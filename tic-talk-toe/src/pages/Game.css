@@ -1,0 +1,12 @@
+#gameBoard {
+  position: relative;
+  display: grid;
+  grid-template-rows: 3;
+  grid-template-columns: 3;
+  background-color: darkred;
+  border: dotted 1em darkred;
+}
+
+.cords {
+  position: absolute;
+}
