@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Form from "./pages/Form";
 import Home from "./pages/Home";
-import Query from "./pages/Query";
+import Game from "./pages/Game";
 
 function App() {
   return (
@@ -11,8 +11,8 @@ function App() {
         <Link class="link" to="/">
           <p>Home</p>
         </Link>
-        <Link class="link" to="query">
-          <p>Query</p>
+        <Link class="link" to="game">
+          <p>Game</p>
         </Link>
         <Link class="link" to="form">
           <p>Form</p>
@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="form" element={<Form />} />
-          <Route path="query" element={<Query />} />
+          <Route path="game" element={<Game />} />
         </Routes>
       </div>
     </Router>
