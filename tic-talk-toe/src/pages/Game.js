@@ -1,6 +1,15 @@
+import React from "react";
+
 const Query = () => {
+  // function loadUpAnimation() {
+  //   const boardRef = useRef(null);
+  //   const onPageLoad = () => {
+
+  //   }
+  // }
+
   return (
-    <div id="gameBoard">
+    <div ref={this.boardRef} id="gameBoard">
       <div id="topRow">
         <select class="cords" id="cord1">
           <option>_</option>
