@@ -3,10 +3,18 @@
   display: grid;
   grid-template-rows: 3;
   grid-template-columns: 3;
+  transform: translateX(50%);
   background-color: darkred;
   border: dotted 1em darkred;
+  height: fit-content;
+  width: fit-content;
 }
 
 .cords {
-  position: absolute;
+  justify-content: center;
+  text-align: center;
+  font-size: xx-large;
+  /* position: absolute; */
+  height: 3em;
+  width: 3em;
 }
