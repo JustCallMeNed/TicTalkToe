@@ -1,70 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import "./Game.css";
+import CordsRow from "./Game/components/CordsRow";
 const Game = () => {
-  // const boxRef = useRef();
-
-  // useEffect(() => {
-  //   gsap.to(boxRef.current, { rotation: "+=360" });
-  // });
-
+  const boxRef = useRef(null);
+  useEffect(() => {
+    gsap.to(boxRef.current, { rotation: "+=360", opacity: 50 });
+  }, []);
   return (
     <>
       {/* <div className="box" ref={boxRef}>
         Hello.
       </div> */}
-      <div id="gameBoard">
-        <div id="topRow">
-          <select class="cords" id="cord1">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-          <select class="cords" id="cord2">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-          <select class="cords" id="cord3">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-        </div>
-        <div id="middleRow">
-          <select class="cords" id="cord4">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-          <select class="cords" id="cord5">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-          <select class="cords" id="cord6">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-        </div>
-        <div id="bottomRow">
-          <select class="cords" id="cord7">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-          <select class="cords" id="cord8">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-          <select class="cords" id="cord9">
-            <option>_</option>
-            <option>X</option>
-            <option>O</option>
-          </select>
-        </div>
+      <div id="gameBoard" ref={boxRef}>
+        <CordsRow cordGrid={[1, 2, 3]} row={"top"} />
+        <CordsRow cordGrid={[4, 5, 6]} row={"middle"} />
+        <CordsRow cordGrid={[7, 8, 9]} row={"bottom"} />
       </div>
     </>
   );

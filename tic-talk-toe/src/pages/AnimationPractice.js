@@ -39,3 +39,5 @@ button.addEventListener("click", () => {
   timeline.timeScale(3);
   timeline.reverse();
 });
+
+// gsap.
