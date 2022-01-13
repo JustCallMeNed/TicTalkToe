@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Form from "./pages/Form/Form";
+import Game from "./pages/Game/Game";
 import Home from "./pages/Home";
 import PersistentDrawerLeft from "./pages/MUI/PersistentDrawerLeft";
-
-import Game from "./pages/Game/Game";
-
 
 function App() {
   const pageContent = (

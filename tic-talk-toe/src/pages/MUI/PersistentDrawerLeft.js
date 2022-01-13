@@ -24,8 +24,8 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import CasinoIcon from "@mui/icons-material/Casino";
 import HomeIcon from "@mui/icons-material/Home";
 import Home from "../Home";
-import Form from "../Form";
-import Game from "../Game";
+import Form from "../Form/Form.js";
+import Game from "../Game/Game.js";
 import "./PersistentDrawerLeft.css";
 
 // https://mui.com/components/material-icons/ for more icons
