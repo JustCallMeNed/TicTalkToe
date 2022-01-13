@@ -37,5 +37,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(3001, () => {
-  console.log("This is pod racing");
+  console.log("Now THIS is pod racing");
 });
