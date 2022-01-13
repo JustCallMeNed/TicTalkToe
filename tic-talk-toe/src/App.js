@@ -3,9 +3,10 @@ import "./App.css";
 import Form from "./pages/Form";
 import Home from "./pages/Home";
 import Game from "./pages/Game";
+import PersistentDrawerLeft from "./pages/MUI/PersistentDrawerLeft";
 
 function App() {
-  return (
+  const pageContent = (
     <Router>
       <nav id="nav">
         <Link class="link" to="/">
@@ -26,6 +27,11 @@ function App() {
         </Routes>
       </div>
     </Router>
+  );
+  return (
+    <>
+      <PersistentDrawerLeft pageContent={pageContent} />
+    </>
   );
 }
 
