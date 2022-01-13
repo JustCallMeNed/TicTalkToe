@@ -2,10 +2,13 @@ import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Form from "./pages/Form/Form";
 import Home from "./pages/Home";
+import PersistentDrawerLeft from "./pages/MUI/PersistentDrawerLeft";
+
 import Game from "./pages/Game/Game";
 
+
 function App() {
-  return (
+  const pageContent = (
     <Router>
       <nav id="nav">
         <Link class="link" to="/">
@@ -26,6 +29,11 @@ function App() {
         </Routes>
       </div>
     </Router>
+  );
+  return (
+    <>
+      <PersistentDrawerLeft pageContent={pageContent} />
+    </>
   );
 }
 
