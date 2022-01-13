@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Form from "./pages/Form";
+import Form from "./pages/Form/Form";
 import Home from "./pages/Home";
-import Game from "./pages/Game";
+import Game from "./pages/Game/Game";
 
 function App() {
   return (
