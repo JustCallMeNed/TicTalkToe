@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -23,9 +23,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import CasinoIcon from "@mui/icons-material/Casino";
 import HomeIcon from "@mui/icons-material/Home";
-import Home from "../Home";
-import Form from "../Form/Form.js";
-import Game from "../Game/Game.js";
 import "./PersistentDrawerLeft.css";
 
 // https://mui.com/components/material-icons/ for more icons
@@ -108,73 +105,64 @@ export default function PersistentDrawerLeft({ pageContent }) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Router>
-        <Drawer
-          sx={{
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
-              width: drawerWidth,
-              boxSizing: "border-box",
-            },
-          }}
-          variant="persistent"
-          anchor="left"
-          open={open}
-        >
-          <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            </IconButton>
-          </DrawerHeader>
-          <Divider />
-          <List>
-            <Link class="link" to="/">
-              <ListItem button>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItem>
-            </Link>
-            <Link class="link" to="game">
-              <ListItem button>
-                <ListItemIcon>
-                  <CasinoIcon />
-                </ListItemIcon>
-                <ListItemText primary="Game" id="game" />
-              </ListItem>
-            </Link>
-            <Link class="link" to="form">
-              <ListItem button>
-                <ListItemIcon>
-                  {/* Look up more ListItemIcons */}
-                  <ChatBubbleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Chat" />
-              </ListItem>
-            </Link>
-          </List>
-          <div>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="form" element={<Form />} />
-              <Route path="game" element={<Game />} />
-            </Routes>
-          </div>
-          <Divider />
-          <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-      </Router>
+            boxSizing: "border-box",
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List>
+          <Link class="link" to="/">
+            <ListItem button>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItem>
+          </Link>
+          <Link class="link" to="game">
+            <ListItem button>
+              <ListItemIcon>
+                <CasinoIcon />
+              </ListItemIcon>
+              <ListItemText primary="Game" id="game" />
+            </ListItem>
+          </Link>
+          <Link class="link" to="form">
+            <ListItem button>
+              <ListItemIcon>
+                {/* Look up more ListItemIcons */}
+                <ChatBubbleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Chat" />
+            </ListItem>
+          </Link>
+        </List>
+        <Divider />
+        <List>
+          {["All mail", "Trash", "Spam"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
       <Main open={open}>
         <DrawerHeader />
         {/* Content here */}
