@@ -166,7 +166,6 @@ export default function PersistentDrawerLeft({ pageContent }) {
       <Main open={open}>
         <DrawerHeader />
         {/* Content here */}
-
         <Typography>{pageContent}</Typography>
       </Main>
     </Box>
