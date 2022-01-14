@@ -18,3 +18,12 @@
   height: 3em;
   width: 3em;
 }
+
+.playerturn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: x-large;
+  border: solid 1px black;
+}
