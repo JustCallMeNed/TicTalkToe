@@ -1,11 +1,17 @@
 import React from "react";
+import T3 from "../assets/T3.jpg";
 import SimpleAccordion from "./MUI/Accordion";
 const Home = () => {
   return (
     <div>
-      <p>Welcome to Tic Talk Toe!</p>
+      <intro>
+        <h1>Welcome to Tic Talk Toe!</h1>
+        <h3>A multiplayer gaming and chat platform</h3>
+      </intro>
       <div>
-        <h1>This is an Accordion for the chat</h1>
+        {/* <img src={homeImage} alt="Tic Tac Toe game" /> */}
+        <img src={T3} alt="Tic Tac Toe game" />
+        <h3>This is an Accordion for the chat</h3>
         <SimpleAccordion />
       </div>
     </div>
