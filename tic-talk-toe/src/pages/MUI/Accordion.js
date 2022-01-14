@@ -12,7 +12,7 @@ export default function SimpleAccordion() {
           <Typography>Chat with (userName)</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Chat content: Tim did he did wish he were a squid</Typography>
+          <Typography>Chat content: Bitch I'm getting there hold on</Typography>
         </AccordionDetails>
       </Accordion>
     </div>
