@@ -1,0 +1,11 @@
+#root {
+  display: flex;
+  place-content: center;
+}
+
+#header {
+  place-content: center;
+}
+img {
+  place-items: center;
+}
