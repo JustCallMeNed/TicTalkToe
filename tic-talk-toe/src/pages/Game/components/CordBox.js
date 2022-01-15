@@ -1,28 +1,38 @@
 import React, { useState, useRef, useEffect } from "react";
-const CordBox = ({ cordIndex }) => {
-  const [submit, setSubmit] = useState(false);
-  const [marked, setMarked] = useState(false);
+// import { turn } from "../Game";
+const CordBox = (cords, { cordIndex }) => {
+  const [mark, setMark] = useState("");
 
-  // Logic for each Cord box to know when it's been "marked"
-  useEffect(() => {
-    console.log(`cord${cordIndex}`.value);
-    if (`cord${cordIndex}`?.value !== undefined) {
-      setMarked(true);
-    } else {
-      setMarked(false);
-      console.log(`cord${cordIndex}`?.value, marked);
+  // not sure whether to make "turn" value a string or boolean - if we're flipping between two players, which is easier to use?
+
+  function toggleMark() {
+    if (mark === "") {
+      setMark("X");
+    } else if (cords.currentState !== "") {
+      setMark("");
     }
-  }, [submit]);
+  }
+
   return (
-    <select
+    <div
       className="cords"
       id={`cord${cordIndex}`}
-      onChange={() => setSubmit(!submit)}
+      onClick={toggleMark}
+      currentState={mark}
+      // changeTurn={changeTurn}
     >
-      <option>_</option>
-      <option>X</option>
-      <option>O</option>
-    </select>
+      {mark}
+    </div>
+    // <select
+    //   className="cords"
+    //   id={`cord${cordIndex}`}
+    //   currentState={turn}
+    //   changeTurn={changeTurn}
+    // >
+    //   <option> </option>
+    //   <option>X</option>
+    //   <option>O</option>
+    // </select>
   );
 };
 export default CordBox;

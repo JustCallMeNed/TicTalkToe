@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import CordBox from "./CordBox";
 const CordsRow = ({ row, cordGrid }) => {
@@ -11,7 +11,7 @@ const CordsRow = ({ row, cordGrid }) => {
     );
   }, []);
   return (
-    <div id={`${row}Row`} ref={rowRef}>
+    <div className="rows" id={`${row}Row`} ref={rowRef}>
       {cordGrid.map((cord) => (
         <CordBox cordIndex={cord} />
       ))}

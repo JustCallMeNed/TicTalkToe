@@ -4,7 +4,7 @@ import SimpleAccordion from "./MUI/Accordion";
 const Home = () => {
   return (
     <div>
-      <intro>
+      <intro id="header">
         <h1>Welcome to Tic Talk Toe!</h1>
         <h3>A multiplayer gaming and chat platform</h3>
       </intro>

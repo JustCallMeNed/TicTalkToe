@@ -1,28 +1,47 @@
+/* #root {
+  display: grid;
+  place-items: center;
+} */
+/* .div {
+  display: flex;
+  place-items: center;
+} */
+
 #gameBoard {
   position: relative;
   display: grid;
   grid-template-rows: 3;
   grid-template-columns: 3;
-  transform: translateX(50%);
-  background-color: darkred;
-  border: dotted 1em darkred;
+  margin: 0 auto;
+  justify-content: center;
+  background-color: rgba(139, 0, 0, 0.5);
+  border: dotted 2em darkred;
   height: fit-content;
   width: fit-content;
+  gap: 0.5em;
+}
+
+.rows {
+  display: flex;
+  gap: 0.5em;
 }
 
 .cords {
-  justify-content: center;
+  display: grid;
+  place-content: center;
+  flex-direction: column;
   text-align: center;
   font-size: xx-large;
-  /* position: absolute; */
   height: 3em;
   width: 3em;
+  border: solid 1px black;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .playerturn {
-  position: absolute;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   text-align: center;
   font-size: x-large;
   border: solid 1px black;
