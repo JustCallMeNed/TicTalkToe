@@ -20,7 +20,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import LoginIcon from "@mui/icons-material/Login";
 import CasinoIcon from "@mui/icons-material/Casino";
 import HomeIcon from "@mui/icons-material/Home";
 import "./PersistentDrawerLeft.css";
@@ -141,13 +141,13 @@ export default function PersistentDrawerLeft({ pageContent }) {
               <ListItemText primary="Game" id="game" />
             </ListItem>
           </Link>
-          <Link class="link" to="form">
+          <Link class="link" to="login">
             <ListItem button>
               <ListItemIcon>
                 {/* Look up more ListItemIcons */}
-                <ChatBubbleIcon />
+                <LoginIcon />
               </ListItemIcon>
-              <ListItemText primary="Chat" />
+              <ListItemText primary="Login" />
             </ListItem>
           </Link>
         </List>
