@@ -3,7 +3,7 @@ import "./App.css";
 import Form from "./pages/Form/Form";
 import Chat from "./pages/Chat/Chat";
 import Game from "./pages/Game/Game";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import PersistentDrawerLeft from "./pages/MUI/PersistentDrawerLeft";
 
 function App() {
