@@ -3,6 +3,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
+import Chat from "../Chat/Chat";
 
 export default function SimpleAccordion() {
   return (
@@ -13,6 +14,7 @@ export default function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>Chat content: Bitch I'm getting there hold on</Typography>
+          <Chat></Chat>
         </AccordionDetails>
       </Accordion>
     </div>

@@ -4,39 +4,27 @@ const http = require("http");
 const server = http.createServer(app);
 const cors = require("cors");
 const { Server } = require("socket.io");
+app.use(cors());
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
+    methodsa: ["GET", "POST"],
   },
 });
-
-app.use(cors());
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/talk.html");
-});
-
 io.on("connection", (socket) => {
-  console.log(`${socket.id}user connected`);
+  console.log(`User Connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+
   socket.on("disconnect", () => {
-    console.log(`${socket.id}user disconnected`);
-  });
-});
-
-io.on("connection", (socket) => {
-  socket.on("chat message", (msg) => {
-    console.log("message: " + msg);
-  });
-});
-
-io.emit("some event", {
-  someProperty: "some value",
-  otherProperty: "other value",
-}); // This will emit the event to all connected sockets
-
-io.on("connection", (socket) => {
-  socket.on("chat message", (msg) => {
-    io.emit("chat message", msg);
+    console.log("User Disconnected", socket.id);
   });
 });
 
