@@ -20,7 +20,7 @@ function Chat() {
     <div className="Chat">
       {!showChat ? (
         <div className="joinChatContainer">
-          <h3>Join A Chat</h3>
+          <h3>Let's Chat</h3>
           <input
             type="text"
             placeholder="John..."

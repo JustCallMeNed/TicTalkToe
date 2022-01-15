@@ -27,11 +27,11 @@ function Chatter({ socket, username, room }) {
   }, [socket]);
 
   return (
-    <div>
-      <div>
+    <div className="chat-window">
+      <div className="chat-header">
         <p>Live Chat</p>
       </div>
-      <div>
+      <div className="message-container">
         {messageList.map((messageContent) => {
           return <h1>{messageContent.message}</h1>;
         })}
