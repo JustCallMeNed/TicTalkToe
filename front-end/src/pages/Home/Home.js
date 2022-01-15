@@ -1,6 +1,6 @@
 import React from "react";
-import T3 from "../assets/T3.jpg";
-import SimpleAccordion from "./MUI/Accordion";
+import T3 from "../../assets/T3.jpg";
+import SimpleAccordion from "../MUI/Accordion";
 const Home = () => {
   return (
     <div>
