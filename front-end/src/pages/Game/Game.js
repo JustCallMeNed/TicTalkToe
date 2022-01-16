@@ -21,24 +21,31 @@ const Game = () => {
   useEffect(() => {
     if (winState === false) {
       for (let x = 0; x < ticBoard.length; x++) {
+        console.log("x =");
+        console.log(x);
         const rowWinCheckX = ticBoard[x].every((rowIndex) => rowIndex === "X");
         const rowWinCheckO = ticBoard[x].every((rowIndex) => rowIndex === "O");
         for (let y = 0; y < ticBoard[x].length; y++) {
-          console.log(ticBoard[x][0], ticBoard[x][1], ticBoard[x][2]);
+          console.log("y =");
           console.log(y);
-          const colWinCheckX =
-            ticBoard[x][0] === "X" &&
-            ticBoard[x][1] === "X" &&
-            ticBoard[x][2] === "X";
-          const colWinCheckO =
-            ticBoard[x][0] === "O" &&
-            ticBoard[x][1] === "O" &&
-            ticBoard[x][2] === "O";
-          if (rowWinCheckX || rowWinCheckO) {
+          const colWinCheck =
+            ticBoard[y][0] === ticBoard[y][1] &&
+            ticBoard[y][1] === ticBoard[y][2] &&
+            ticBoard[y][x] !== "";
+          // const colWinCheckO =
+          //   ticBoard[y][0] === "O" &&
+          //   ticBoard[y][1] === "O" &&
+          //   ticBoard[y][2] === "O";
+          if (rowWinCheckX === true || rowWinCheckO === true) {
             setWinState(true);
+            console.log(winState);
           }
-          if (colWinCheckX || colWinCheckO) {
+          if (
+            colWinCheck === true
+            // || colWinCheckO === true
+          ) {
             setWinState(true);
+            console.log(winState);
           }
         }
 
@@ -62,6 +69,7 @@ const Game = () => {
       }
     }
   }, [turn]);
+
   console.log(winState);
   return (
     <>
