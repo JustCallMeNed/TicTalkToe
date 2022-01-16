@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import Chat from "../Chat/Chat";
 
-export default function SimpleAccordion() {
+export default function ChatWindow() {
   return (
     <div>
       <Accordion>
