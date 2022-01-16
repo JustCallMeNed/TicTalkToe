@@ -23,28 +23,42 @@ const Game = () => {
       for (let x = 0; x < ticBoard.length; x++) {
         const rowWinCheckX = ticBoard[x].every((rowIndex) => rowIndex === "X");
         const rowWinCheckO = ticBoard[x].every((rowIndex) => rowIndex === "O");
-
-        if (rowWinCheckX || rowWinCheckO) {
-          setWinState(true);
-        }
-
-        const compareArray = [];
         for (let y = 0; y < ticBoard[x].length; y++) {
-          if (compareArray.length === 3) {
-            compareArray = [];
-            console.log(compareArray);
+          console.log(ticBoard[x][0], ticBoard[x][1], ticBoard[x][2]);
+          console.log(y);
+          const colWinCheckX =
+            ticBoard[x][0] === "X" &&
+            ticBoard[x][1] === "X" &&
+            ticBoard[x][2] === "X";
+          const colWinCheckO =
+            ticBoard[x][0] === "O" &&
+            ticBoard[x][1] === "O" &&
+            ticBoard[x][2] === "O";
+          if (rowWinCheckX || rowWinCheckO) {
+            setWinState(true);
           }
-          if (compareArray.length < 3) {
-            compareArray.push(ticBoard[x][y]);
-            console.log(compareArray);
+          if (colWinCheckX || colWinCheckO) {
+            setWinState(true);
           }
         }
-        if (compareArray.every((column) => column === "X")) {
-          setWinState(true);
-        }
-        if (compareArray.every((column) => column === "O")) {
-          setWinState(true);
-        }
+
+        // const compareArray = [];
+        // for (let y = 0; y < ticBoard[x].length; y++) {
+        //   if (compareArray.length === 3) {
+        //     compareArray = [];
+        //     // console.log(compareArray);
+        //   }
+        //   if (compareArray.length < 3) {
+        //     compareArray.push(ticBoard[x][y]);
+        //     console.log(compareArray);
+        //   }
+        // }
+        // if (compareArray.every((column) => column === "X")) {
+        //   setWinState(true);
+        // }
+        // if (compareArray.every((column) => column === "O")) {
+        //   setWinState(true);
+        // }
       }
     }
   }, [turn]);
@@ -80,7 +94,11 @@ const Game = () => {
           setTicBoard={setTicBoard}
         />
       </div>
-      {turn === "X" ? (
+      {winState === true ? (
+        <div className="playerturn" id="winbanner">
+          <h1>WINNER</h1>
+        </div>
+      ) : turn === "X" ? (
         <div className="playerturn">
           <h1>Player One's Turn</h1>
         </div>
