@@ -3,6 +3,10 @@ import React, { useState, useEffect } from "react";
 function Chatter({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  let SubmitMessage = () => {
+    sendMessage();
+    setCurrentMessage("");
+  };
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -10,10 +14,7 @@ function Chatter({ socket, username, room }) {
         room: room,
         author: username,
         message: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
       };
 
       await socket.emit("send_message", messageData);
@@ -61,7 +62,7 @@ function Chatter({ socket, username, room }) {
             e.key === "Enter" && sendMessage();
           }}
         />
-        <button onClick={sendMessage}>&#9658;</button>
+        <button onClick={() => SubmitMessage()}>&#9658;</button>
       </div>
     </div>
   );

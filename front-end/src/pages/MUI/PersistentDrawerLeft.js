@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,10 @@ import MailIcon from "@mui/icons-material/Mail";
 import LoginIcon from "@mui/icons-material/Login";
 import CasinoIcon from "@mui/icons-material/Casino";
 import HomeIcon from "@mui/icons-material/Home";
+import ChatBubbleOutline from "@mui/icons-material/ChatBubbleOutline";
 import "./PersistentDrawerLeft.css";
+import ChatWindow from "./ChatWindow";
+// import ChatWindow from "./ChatWindow";
 
 // https://mui.com/components/material-icons/ for more icons
 
@@ -85,7 +88,7 @@ export default function PersistentDrawerLeft({ pageContent }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const [chatVisible, setChatVisible] = useState(false);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -153,6 +156,12 @@ export default function PersistentDrawerLeft({ pageContent }) {
         </List>
         <Divider />
         <List>
+          <ListItem button onClick={() => setChatVisible(!chatVisible)}>
+            <ListItemIcon>
+              <ChatBubbleOutline />
+            </ListItemIcon>
+            <ListItemText primary="Chat" />
+          </ListItem>
           {["All mail", "Trash", "Spam"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -167,6 +176,13 @@ export default function PersistentDrawerLeft({ pageContent }) {
         <DrawerHeader />
         {/* Content here */}
         <Typography>{pageContent}</Typography>
+        {chatVisible ? (
+          <ChatWindow />
+        ) : (
+          <div hidden>
+            <ChatWindow hidden />
+          </div>
+        )}
       </Main>
     </Box>
   );
