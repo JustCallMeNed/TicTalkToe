@@ -1,38 +1,35 @@
 import React, { useState, useRef, useEffect } from "react";
-// import { turn } from "../Game";
-const CordBox = (cords, { cordIndex }) => {
+const CordBox = ({
+  turn,
+  setTurn,
+  ticBoard,
+  setTicBoard,
+  cords,
+  cordIndex,
+  rowIndex,
+  boxIndex,
+}) => {
   const [mark, setMark] = useState("");
-
-  // not sure whether to make "turn" value a string or boolean - if we're flipping between two players, which is easier to use?
-
-  function toggleMark() {
-    if (mark === "") {
-      setMark("X");
-    } else if (cords.currentState !== "") {
-      setMark("");
-    }
-  }
 
   return (
     <div
       className="cords"
       id={`cord${cordIndex}`}
-      onClick={toggleMark}
+      onClick={() => {
+        if (mark === "") {
+          let copy = [...ticBoard];
+          copy[rowIndex][boxIndex] = turn;
+          setTicBoard(copy);
+          setMark(turn);
+          setTurn(turn === "X" ? "O" : "X");
+        } else if (cords.currentState !== "") {
+          setMark("");
+        }
+      }}
       currentState={mark}
-      // changeTurn={changeTurn}
     >
       {mark}
     </div>
-    // <select
-    //   className="cords"
-    //   id={`cord${cordIndex}`}
-    //   currentState={turn}
-    //   changeTurn={changeTurn}
-    // >
-    //   <option> </option>
-    //   <option>X</option>
-    //   <option>O</option>
-    // </select>
   );
 };
 export default CordBox;

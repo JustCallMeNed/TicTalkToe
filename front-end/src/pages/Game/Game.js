@@ -7,22 +7,78 @@ const Game = () => {
   const boxRef = useRef(null);
   const [turn, setTurn] = useState("X");
   const [winState, setWinState] = useState(false);
-
-  function changeTurn(cordGrid, row) {
-    [cordGrid][row] = turn;
-    setTurn((turn) => (turn === "X" ? "O" : "X"));
-  }
+  const [ticBoard, setTicBoard] = useState([
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+  ]);
+  //If I can't figure this out, google "2D Array Tic Tac Toe Win state"
 
   useEffect(() => {
     gsap.to(boxRef.current, { rotation: "+=360", opacity: 50 });
   }, []);
 
+  useEffect(() => {
+    if (winState === false) {
+      for (let x = 0; x < ticBoard.length; x++) {
+        const rowWinCheckX = ticBoard[x].every((rowIndex) => rowIndex === "X");
+        const rowWinCheckO = ticBoard[x].every((rowIndex) => rowIndex === "O");
+
+        if (rowWinCheckX || rowWinCheckO) {
+          setWinState(true);
+        }
+
+        const compareArray = [];
+        for (let y = 0; y < ticBoard[x].length; y++) {
+          if (compareArray.length === 3) {
+            compareArray = [];
+            console.log(compareArray);
+          }
+          if (compareArray.length < 3) {
+            compareArray.push(ticBoard[x][y]);
+            console.log(compareArray);
+          }
+        }
+        if (compareArray.every((column) => column === "X")) {
+          setWinState(true);
+        }
+        if (compareArray.every((column) => column === "O")) {
+          setWinState(true);
+        }
+      }
+    }
+  }, [turn]);
+  console.log(winState);
   return (
     <>
       <div id="gameBoard" ref={boxRef}>
-        <CordsRow cordGrid={[1, 2, 3]} row={"top"} />
-        <CordsRow cordGrid={[4, 5, 6]} row={"middle"} />
-        <CordsRow cordGrid={[7, 8, 9]} row={"bottom"} />
+        <CordsRow
+          rowIndex={0}
+          cordGrid={[1, 2, 3]}
+          row={"top"}
+          turn={turn}
+          setTurn={setTurn}
+          ticBoard={ticBoard}
+          setTicBoard={setTicBoard}
+        />
+        <CordsRow
+          rowIndex={1}
+          cordGrid={[4, 5, 6]}
+          row={"middle"}
+          turn={turn}
+          setTurn={setTurn}
+          ticBoard={ticBoard}
+          setTicBoard={setTicBoard}
+        />
+        <CordsRow
+          rowIndex={2}
+          cordGrid={[7, 8, 9]}
+          row={"bottom"}
+          turn={turn}
+          setTurn={setTurn}
+          ticBoard={ticBoard}
+          setTicBoard={setTicBoard}
+        />
       </div>
       {turn === "X" ? (
         <div className="playerturn">

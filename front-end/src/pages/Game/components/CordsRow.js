@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import CordBox from "./CordBox";
-const CordsRow = ({ row, cordGrid }) => {
+const CordsRow = ({
+  turn,
+  setTurn,
+  ticBoard,
+  setTicBoard,
+  row,
+  rowIndex,
+  cordGrid,
+}) => {
   const rowRef = useRef(null);
   useEffect(() => {
     gsap.fromTo(
@@ -12,8 +20,16 @@ const CordsRow = ({ row, cordGrid }) => {
   }, []);
   return (
     <div className="rows" id={`${row}Row`} ref={rowRef}>
-      {cordGrid.map((cord) => (
-        <CordBox cordIndex={cord} />
+      {cordGrid.map((cord, boxIndex) => (
+        <CordBox
+          rowIndex={rowIndex}
+          cordIndex={cord}
+          boxIndex={boxIndex}
+          turn={turn}
+          setTurn={setTurn}
+          ticBoard={ticBoard}
+          setTicBoard={setTicBoard}
+        />
       ))}
     </div>
   );
