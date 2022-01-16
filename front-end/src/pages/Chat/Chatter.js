@@ -17,6 +17,8 @@ function Chatter({ socket, username, room }) {
       };
 
       await socket.emit("send_message", messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage("");
     }
   };
 
@@ -33,7 +35,19 @@ function Chatter({ socket, username, room }) {
       </div>
       <div className="message-container">
         {messageList.map((messageContent) => {
-          return <h1>{messageContent.message}</h1>;
+          return (
+            <div id={username === messageContent.author ? "you" : "other"}>
+              <div>
+                <div>
+                  <p>{messageContent.message}</p>
+                </div>
+                <div>
+                  <p>{messageContent.time}</p>
+                  <p>{messageContent.author}</p>
+                </div>
+              </div>
+            </div>
+          );
         })}
       </div>
       <div>
@@ -42,6 +56,9 @@ function Chatter({ socket, username, room }) {
           placeholder="How you dooin?..."
           onChange={(e) => {
             setCurrentMessage(e.target.value);
+          }}
+          onKeyPress={(e) => {
+            e.key === "Enter" && sendMessage();
           }}
         />
         <button onClick={sendMessage}>&#9658;</button>
