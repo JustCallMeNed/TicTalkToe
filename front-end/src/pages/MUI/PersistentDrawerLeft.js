@@ -179,8 +179,8 @@ export default function PersistentDrawerLeft({ pageContent }) {
         {chatVisible ? (
           <ChatWindow />
         ) : (
-          <div hidden>
-            <ChatWindow hidden />
+          <div style={{ opacity: 0 }}>
+            <ChatWindow />
           </div>
         )}
       </Main>
