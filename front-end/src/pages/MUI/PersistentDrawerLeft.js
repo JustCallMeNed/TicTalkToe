@@ -25,7 +25,7 @@ import CasinoIcon from "@mui/icons-material/Casino";
 import HomeIcon from "@mui/icons-material/Home";
 import ChatBubbleOutline from "@mui/icons-material/ChatBubbleOutline";
 import "./PersistentDrawerLeft.css";
-import ChatWindow from "./ChatWindow";
+import ChatWindow from "../Chat/ChatWindow";
 // import ChatWindow from "./ChatWindow";
 
 // https://mui.com/components/material-icons/ for more icons
@@ -155,6 +155,7 @@ export default function PersistentDrawerLeft({ pageContent }) {
           </Link>
         </List>
         <Divider />
+        {/* This is an example of mapping drawer buttons, will be deleted later */}
         <List>
           <ListItem button onClick={() => setChatVisible(!chatVisible)}>
             <ListItemIcon>
@@ -171,6 +172,7 @@ export default function PersistentDrawerLeft({ pageContent }) {
             </ListItem>
           ))}
         </List>
+        {/* Above will be replaced */}
       </Drawer>
       <Main open={open}>
         <DrawerHeader />

@@ -1,0 +1,30 @@
+@font-face {
+  font-family: SecretAgent;
+  src: url("../../fonts/SecretAgent.ttf");
+}
+
+#T3 {
+  height: 45em;
+  width: auto;
+}
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* .t3Style {
+  font-family: SecretAgent;
+  color: rgb(220 60 60);
+} */
+#title {
+  font-family: SecretAgent;
+  color: rgb(220 60 60);
+}
+#statement {
+  font-family: SecretAgent;
+  color: rgb(220 60 60);
+}
+#homeImg {
+  display: flex;
+  justify-content: center;
+}

@@ -1,18 +1,22 @@
+import { Box, Container, Typography } from "@mui/material";
 import React from "react";
+import "./Home.css";
 import T3 from "../../assets/T3.jpg";
-// import ChatWindow from "../MUI/ChatWindow";
 const Home = () => {
   return (
-    <div>
-      <intro id="header">
-        <h1>Welcome to Tic Talk Toe!</h1>
-        <h3>A multiplayer gaming and chat platform</h3>
-      </intro>
-      <div>
-        {/* <img src={homeImage} alt="Tic Tac Toe game" /> */}
-        <img src={T3} alt="Tic Tac Toe game" />
-      </div>
-    </div>
+    <Box>
+      <Container id="header">
+        <Typography id="title" className="t3Style" variant="h1">
+          Tic Talk Toe!
+        </Typography>
+        <Typography id="statement" className="t3Style" variant="h3">
+          A multiplayer gaming and chat platform
+        </Typography>
+      </Container>
+      <Container id="homeImg">
+        <img id="T3" src={T3} alt="Tic Tac Toe game" />
+      </Container>
+    </Box>
   );
 };
 
