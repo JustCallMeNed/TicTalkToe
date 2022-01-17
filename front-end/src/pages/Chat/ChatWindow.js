@@ -1,19 +1,23 @@
 import * as React from "react";
+import "./ChatWindow.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import Chat from "../Chat/Chat";
+import Chat from "./Chat";
 
 export default function ChatWindow({ chatVisible }) {
   return (
-    <div style={{ opacity: chatVisible ? 1 : 0 }}>
+    <div id="chatWindow" style={{ opacity: chatVisible ? 1 : 0 }}>
       <Accordion>
         <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
           <Typography>Chat with (userName)</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Chat content: Bitch I'm getting there hold on</Typography>
+          <Typography>
+            Chat content: Don't you love it when stuff just works out the first time you
+            add it?
+          </Typography>
           <Chat></Chat>
         </AccordionDetails>
       </Accordion>
