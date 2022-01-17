@@ -5,9 +5,9 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import Chat from "../Chat/Chat";
 
-export default function ChatWindow() {
+export default function ChatWindow({ chatVisible }) {
   return (
-    <div>
+    <div style={{ opacity: chatVisible ? 1 : 0 }}>
       <Accordion>
         <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
           <Typography>Chat with (userName)</Typography>
