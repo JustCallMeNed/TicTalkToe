@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useState } from "react";
 import io from "socket.io-client";
 import Chatter from "./Chatter";
@@ -35,7 +36,9 @@ function Chat() {
               setRoom(e.target.value);
             }}
           />
-          <button onClick={joinRoom}>Join A Room</button>
+          <Button onClick={joinRoom} variant="contained">
+            Join a Room
+          </Button>
         </div>
       ) : (
         <Chatter socket={socket} username={username} room={room} />
