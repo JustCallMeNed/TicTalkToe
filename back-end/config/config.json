@@ -14,10 +14,10 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": "password",
-    "database": "tictalktoe",
-    "host": "127.0.0.1",
+    "username": "ghfrpmqngjvygv",
+    "password": "1af14c9c505b4660e908690eba3d469cbcd303c00347e5327add123ae4254f75",
+    "database": "df7cl9rsbpvac0",
+    "host": "ec2-34-230-198-12.compute-1.amazonaws.com",
     "dialect": "postgres"
   }
 }
