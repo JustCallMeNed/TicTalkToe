@@ -20,57 +20,28 @@ const Game = () => {
 
   useEffect(() => {
     if (winState === false) {
+      //X/Y COORDINATES ARE LABELED BACKWARDS, BUT AT THIS POINT, FUCK IT
       for (let x = 0; x < ticBoard.length; x++) {
-        console.log("x =");
-        console.log(x);
         const rowWinCheckX = ticBoard[x].every((rowIndex) => rowIndex === "X");
         const rowWinCheckO = ticBoard[x].every((rowIndex) => rowIndex === "O");
         for (let y = 0; y < ticBoard[x].length; y++) {
-          console.log("y =");
-          console.log(y);
-          const colWinCheck =
-            ticBoard[y][0] === ticBoard[y][1] &&
-            ticBoard[y][1] === ticBoard[y][2] &&
-            ticBoard[y][x] !== "";
-          // const colWinCheckO =
-          //   ticBoard[y][0] === "O" &&
-          //   ticBoard[y][1] === "O" &&
-          //   ticBoard[y][2] === "O";
+          if (x === 0 && ticBoard[x][y] !== "") {
+            const colWinCheck =
+              ticBoard[x][y] === ticBoard[x + 1][y] &&
+              ticBoard[x + 1][y] === ticBoard[x + 2][y];
+            if (colWinCheck === true) {
+              setWinState(true);
+            }
+          }
+
           if (rowWinCheckX === true || rowWinCheckO === true) {
             setWinState(true);
-            console.log(winState);
-          }
-          if (
-            colWinCheck === true
-            // || colWinCheckO === true
-          ) {
-            setWinState(true);
-            console.log(winState);
           }
         }
-
-        // const compareArray = [];
-        // for (let y = 0; y < ticBoard[x].length; y++) {
-        //   if (compareArray.length === 3) {
-        //     compareArray = [];
-        //     // console.log(compareArray);
-        //   }
-        //   if (compareArray.length < 3) {
-        //     compareArray.push(ticBoard[x][y]);
-        //     console.log(compareArray);
-        //   }
-        // }
-        // if (compareArray.every((column) => column === "X")) {
-        //   setWinState(true);
-        // }
-        // if (compareArray.every((column) => column === "O")) {
-        //   setWinState(true);
-        // }
       }
     }
   }, [turn]);
 
-  console.log(winState);
   return (
     <>
       <div id="gameBoard" ref={boxRef}>
