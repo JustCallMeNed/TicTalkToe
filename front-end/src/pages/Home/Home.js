@@ -11,8 +11,6 @@ const Home = () => {
       <div>
         {/* <img src={homeImage} alt="Tic Tac Toe game" /> */}
         <img src={T3} alt="Tic Tac Toe game" />
-        <h3>This is an Accordion for the chat</h3>
-        {/* <ChatWindow /> */}
       </div>
     </div>
   );
