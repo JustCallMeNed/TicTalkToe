@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import io from "socket.io-client";
 import Chatter from "./Chatter";
@@ -21,24 +21,35 @@ function Chat() {
     <div className="Chat">
       {!showChat ? (
         <div className="joinChatContainer">
-          <h3>Let's Chat</h3>
-          <input
-            type="text"
-            placeholder="John..."
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Room ID..."
-            onChange={(e) => {
-              setRoom(e.target.value);
-            }}
-          />
-          <Button onClick={joinRoom} variant="contained">
-            Join a Room
-          </Button>
+          <br />
+          <Typography variant="h6">Let's Chat</Typography>
+          <Grid container spacing={1} alignItems="center">
+            <Grid item s>
+              <TextField
+                type="text"
+                label="Name"
+                variant="outlined"
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item s>
+              <TextField
+                type="text"
+                label="Room ID"
+                variant="outlined"
+                onChange={(e) => {
+                  setRoom(e.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item s>
+              <Button size="large" onClick={joinRoom} variant="contained">
+                Join a Room
+              </Button>
+            </Grid>
+          </Grid>
         </div>
       ) : (
         <Chatter socket={socket} username={username} room={room} />
