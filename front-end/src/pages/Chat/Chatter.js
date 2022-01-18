@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
 function Chatter({ socket, username, room }) {
@@ -29,11 +30,10 @@ function Chatter({ socket, username, room }) {
     });
   }, [socket]);
 
+  // Ben: I need to finish MUI on this tonight
   return (
     <div className="chat-window">
-      <div className="chat-header">
-        <p>Live Chat</p>
-      </div>
+      <Typography variant="h6">Live Chat</Typography>
       <div className="message-container">
         {messageList.map((messageContent) => {
           return (

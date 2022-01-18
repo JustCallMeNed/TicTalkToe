@@ -23,10 +23,9 @@ import MailIcon from "@mui/icons-material/Mail";
 import LoginIcon from "@mui/icons-material/Login";
 import CasinoIcon from "@mui/icons-material/Casino";
 import HomeIcon from "@mui/icons-material/Home";
-import ChatBubbleOutline from "@mui/icons-material/ChatBubbleOutline";
+import ChatIcon from "@mui/icons-material/Chat";
 import "./PersistentDrawerLeft.css";
 import ChatWindow from "../Chat/ChatWindow";
-// import ChatWindow from "./ChatWindow";
 
 // https://mui.com/components/material-icons/ for more icons
 
@@ -159,7 +158,7 @@ export default function PersistentDrawerLeft({ pageContent }) {
         <List>
           <ListItem button onClick={() => setChatVisible(!chatVisible)}>
             <ListItemIcon>
-              <ChatBubbleOutline />
+              <ChatIcon />
             </ListItemIcon>
             <ListItemText primary="Chat" />
           </ListItem>
