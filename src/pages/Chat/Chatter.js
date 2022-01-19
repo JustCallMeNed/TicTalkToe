@@ -1,5 +1,17 @@
-import { Typography } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Container,
+  Grid,
+  Chip,
+  TextField,
+  Button,
+  TableContainer,
+  Paper,
+} from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 import React, { useState, useEffect } from "react";
+import "./Chatter.css";
 
 function Chatter({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -15,10 +27,7 @@ function Chatter({ socket, username, room }) {
         room: room,
         author: username,
         message: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
       };
 
       await socket.emit("send_message", messageData);
@@ -33,42 +42,60 @@ function Chatter({ socket, username, room }) {
     });
   }, [socket]);
 
-  // Ben: I need to finish MUI on this tonight
   return (
-    <div className="chat-window">
-      <Typography variant="h6">Live Chat</Typography>
-      <div className="message-container">
-        {messageList.map((messageContent) => {
-          return (
-            <div id={username === messageContent.author ? "you" : "other"}>
-              <div>
-                <div>
-                  <p>{messageContent.message}</p>
-                </div>
-                <div>
-                  <p>{messageContent.time}</p>
-                  <p>{messageContent.author}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        <input
-          type="text"
-          value={currentMessage}
-          placeholder="How you dooin?..."
-          onChange={(e) => {
-            setCurrentMessage(e.target.value);
-          }}
-          onKeyPress={(e) => {
-            e.key === "Enter" && sendMessage();
-          }}
-        />
-        <button onClick={() => SubmitMessage()}>&#9658;</button>
-      </div>
-    </div>
+    // Ben: Trying to set up a scroll bar for when chat window becomes too high
+    <Box className="chat-window">
+      <Paper sx={{ height: "50%", width: "100%", overflow: "hidden" }}>
+        <TableContainer sx={{ maxHeight: "250", overflow: "scroll" }}>
+          <Typography variant="h6">Room# {room}</Typography>
+          <Container className="message-container">
+            {messageList.map((messageContent) => {
+              return (
+                <Box id={username === messageContent.author ? "you" : "other"}>
+                  <Grid container spacing={1}>
+                    <Grid item>
+                      <Typography className="author" variant="">
+                        {messageContent.author}
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography>{messageContent.time}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Container>
+                    <Chip label={messageContent.message} color="primary"></Chip>
+                  </Container>
+                  <br />
+                </Box>
+              );
+            })}
+          </Container>
+        </TableContainer>
+      </Paper>
+      <br />
+      <Grid container spacing={1} alignItems="center">
+        <Grid item>
+          <TextField
+            type="text"
+            value={currentMessage}
+            placeholder="Aa"
+            variant="filled"
+            onChange={(e) => {
+              setCurrentMessage(e.target.value);
+            }}
+            onKeyPress={(e) => {
+              e.key === "Enter" && sendMessage();
+            }}
+          />
+        </Grid>
+        <Grid item>
+          <Button size="large" variant="contained" onClick={() => SubmitMessage()}>
+            {/* &#9658; */}
+            <SendIcon />
+          </Button>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
