@@ -53,7 +53,7 @@ const Game = () => {
     }
   }, [turn]);
   // console.log(ticBoard[0][0], ticBoard[1][1], ticBoard[2][2]);
-  console.log(ticBoard[0][2], ticBoard[1][1], ticBoard[2][0]);
+  // console.log(ticBoard[0][2], ticBoard[1][1], ticBoard[2][0]);
   return (
     <>
       <div id="gameBoard" ref={boxRef}>
