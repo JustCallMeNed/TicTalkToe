@@ -27,3 +27,20 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(71, 153, 241);
 }
+
+#you {
+  justify-content: start;
+}
+
+#you .message-content {
+  justify-content: flex-start;
+}
+
+#other {
+  justify-content: end;
+}
+
+#other .message-content {
+  justify-content: flex-end;
+  background-color: rgb(220 60 60);
+}

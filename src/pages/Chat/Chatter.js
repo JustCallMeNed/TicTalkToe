@@ -1,6 +1,15 @@
-import { Typography, Box, Container, Grid, Chip, TextField, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Container,
+  Grid,
+  Chip,
+  TextField,
+  Button,
+} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import React, { useState, useEffect } from "react";
+import ScrollToBottom from "react-scroll-to-bottom";
 import "./Chatter.css";
 
 function Chatter({ socket, username, room }) {
@@ -17,7 +26,10 @@ function Chatter({ socket, username, room }) {
         room: room,
         author: username,
         message: currentMessage,
-        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
       };
 
       await socket.emit("send_message", messageData);
@@ -44,10 +56,14 @@ function Chatter({ socket, username, room }) {
     <Box className="chat-window">
       <Container>
         <Typography variant="h6">Room# {room}</Typography>
-        <Container className="message-container">
+
+        <ScrollToBottom className="message-container">
           {messageList.map((messageContent) => {
             return (
-              <Box id={username === messageContent.author ? "you" : "other"}>
+              <Box
+                className="message"
+                id={username === messageContent.author ? "you" : "other"}
+              >
                 <Grid container spacing={1}>
                   <Grid item>
                     <Typography className="author" variant="">
@@ -59,14 +75,19 @@ function Chatter({ socket, username, room }) {
                   </Grid>
                 </Grid>
                 <Container>
-                  <Chip label={messageContent.message} color="primary"></Chip>
+                  <Chip
+                    className="message-content"
+                    label={messageContent.message}
+                    color="primary"
+                  ></Chip>
                 </Container>
                 <br />
               </Box>
             );
           })}
-        </Container>
+        </ScrollToBottom>
       </Container>
+
       <br />
       <Grid container spacing={1} alignItems="center">
         <Grid item>
@@ -84,7 +105,11 @@ function Chatter({ socket, username, room }) {
           />
         </Grid>
         <Grid item>
-          <Button size="large" variant="contained" onClick={() => SubmitMessage()}>
+          <Button
+            size="large"
+            variant="contained"
+            onClick={() => SubmitMessage()}
+          >
             <SendIcon />
           </Button>
         </Grid>
