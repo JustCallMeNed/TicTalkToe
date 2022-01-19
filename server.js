@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const db = require("./models");
+const db = require("./back-end/models");
 const http = require("http");
 const server = http.createServer(app);
 const cors = require("cors");
@@ -42,7 +42,7 @@ server.listen(3001, () => {
 });
 
 // routes
-require("./routes/api-routes.js")(app);
+require("./back-end/routes/api-routes.js")(app);
 
 db.sequelize.sync().then(() => {
   app.listen(port, () => {
