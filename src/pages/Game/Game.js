@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import "../Game/Game.css";
 import CordsRow from "./components/CordsRow";
-import CordBox from "./components/CordBox";
+// import CordBox from "./components/CordBox";
 const Game = () => {
   const boxRef = useRef(null);
   const [turn, setTurn] = useState("X");
@@ -12,7 +12,6 @@ const Game = () => {
     ["", "", ""],
     ["", "", ""],
   ]);
-  //If I can't figure this out, google "2D Array Tic Tac Toe Win state"
 
   useEffect(() => {
     gsap.to(boxRef.current, { rotation: "+=360", opacity: 50 });
@@ -37,11 +36,24 @@ const Game = () => {
           if (rowWinCheckX === true || rowWinCheckO === true) {
             setWinState(true);
           }
+          const diagWinCheck0 =
+            ticBoard[0][0] !== "" &&
+            ticBoard[0][0] === ticBoard[1][1] &&
+            ticBoard[1][1] === ticBoard[2][2];
+          const diagWinCheck1 =
+            ticBoard[0][2] !== "" &&
+            ticBoard[0][2] === ticBoard[1][1] &&
+            ticBoard[1][1] === ticBoard[2][0];
+
+          if (diagWinCheck0 || diagWinCheck1) {
+            setWinState(true);
+          }
         }
       }
     }
   }, [turn]);
-
+  // console.log(ticBoard[0][0], ticBoard[1][1], ticBoard[2][2]);
+  console.log(ticBoard[0][2], ticBoard[1][1], ticBoard[2][0]);
   return (
     <>
       <div id="gameBoard" ref={boxRef}>
