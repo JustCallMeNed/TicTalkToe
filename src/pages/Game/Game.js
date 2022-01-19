@@ -7,6 +7,7 @@ const Game = () => {
   const boxRef = useRef(null);
   const [turn, setTurn] = useState("X");
   const [winState, setWinState] = useState(false);
+  const [tieState, setTieState] = useState(false);
   const [ticBoard, setTicBoard] = useState([
     ["", "", ""],
     ["", "", ""],
@@ -50,6 +51,10 @@ const Game = () => {
           }
         }
       }
+      // } else if (ticBoard[x][y] !== "") {
+      //   setTieState(true);
+      //   console.log("TIE STATE");
+      // ^^^ NOT CURRENTLY ABLE TO FIRE - "x" and "y" variables undefined - scope issue
     }
   }, [turn]);
   // console.log(ticBoard[0][0], ticBoard[1][1], ticBoard[2][2]);
@@ -89,6 +94,10 @@ const Game = () => {
         <div className="playerturn" id="winbanner">
           <h1>WINNER</h1>
         </div>
+      ) : tieState === true ? (
+        <div className="playerturn" id="winbanner">
+          <h1>DRAW</h1>
+        </div>
       ) : turn === "X" ? (
         <div className="playerturn">
           <h1>Player One's Turn</h1>
@@ -101,15 +110,41 @@ const Game = () => {
       {/* VVV Widget Button that makes the board go WHOOOOOOOO - not permanent */}
       <div id="widgetBtn">
         <button
-          onClick={(e) => {
-            gsap.to(boxRef.current, {
-              duration: 5,
-              rotation: "+=11520",
-              ease: "power1",
-            });
+          onClick={() => {
+            gsap.timeline(
+              gsap.to(boxRef.current, {
+                duration: 3,
+                rotation: "1800",
+                ease: "power2",
+              }),
+              gsap.to(".cords", {
+                delay: 3,
+                duration: 1,
+                stagger: 0.2,
+                rotation: "1080",
+                ease: "power1",
+              })
+            );
           }}
         >
           Whee!
+        </button>
+      </div>
+      <div id="resetBtn">
+        <button
+          onClick={() => {
+            setTicBoard([
+              ["", "", ""],
+              ["", "", ""],
+              ["", "", ""],
+            ]);
+            setWinState(false);
+            setTieState(false);
+            setTurn("X");
+            //reload CordsRow/CordBox components with new state
+          }}
+        >
+          Reset
         </button>
       </div>
     </>
