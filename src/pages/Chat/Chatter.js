@@ -1,7 +1,6 @@
 import { Typography, Box, Container, Grid, Chip, TextField, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import React, { useState, useEffect } from "react";
-import ScrollToBottom from "react-scroll-to-bottom";
+import React, { useRef, useState, useEffect } from "react";
 import "./Chatter.css";
 
 function Chatter({ socket, username, room }) {
@@ -33,25 +32,23 @@ function Chatter({ socket, username, room }) {
     });
   }, [socket]);
 
-  // This might be helpful for scroll function
-  // const AlwaysScrollToBottom = () => {
-  //   const elementRef = useRef();
-  //   useEffect(() => elementRef.current.scrollIntoView());
-  //   return <div ref={elementRef} />;
-  // };
+  const divRef = useRef(null);
+  useEffect(() => {
+    divRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messageList]);
 
   return (
-    // Ben: Trying to set up a scroll bar for when chat window becomes too high
     <Box className="chat-window">
       <Container>
         <Typography variant="h6">Room# {room}</Typography>
 
-        <ScrollToBottom className="message-container">
-          {messageList.map((messageContent) => {
+        <Container className="message-container">
+          {messageList.map((messageContent, i) => {
             return (
               <Box
                 className="message"
                 id={username === messageContent.author ? "you" : "other"}
+                key={i}
               >
                 <Grid container spacing={1}>
                   <Grid item>
@@ -68,13 +65,14 @@ function Chatter({ socket, username, room }) {
                     className="message-content"
                     label={messageContent.message}
                     color="primary"
+                    ref={divRef}
                   />
                 </Container>
                 <br />
               </Box>
             );
           })}
-        </ScrollToBottom>
+        </Container>
       </Container>
 
       <br />
@@ -84,6 +82,7 @@ function Chatter({ socket, username, room }) {
             inputProps={{ maxLength: 160 }}
             hiddenLabel
             type="text"
+            autoComplete="off"
             value={currentMessage}
             placeholder="Aa"
             variant="filled"
