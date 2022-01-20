@@ -79,7 +79,7 @@ function Chatter({ socket, username, room }) {
       <Grid container spacing={1} alignItems="center">
         <Grid item>
           <TextField
-            inputProps={{ maxLength: 160 }}
+            inputProps={{ maxLength: 120 }}
             hiddenLabel
             type="text"
             autoComplete="off"
