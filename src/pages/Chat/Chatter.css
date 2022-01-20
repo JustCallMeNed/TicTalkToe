@@ -8,6 +8,10 @@
   overscroll-behavior-y: contain;
   scroll-snap-type: y proximity;
 }
+
+::selection {
+  background: rgb(0, 0, 0);
+}
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

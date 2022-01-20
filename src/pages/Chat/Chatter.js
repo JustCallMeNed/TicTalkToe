@@ -59,7 +59,7 @@ function Chatter({ socket, username, room }) {
                   </Grid>
                 </Grid>
                 <Container>
-                  <Chip label={messageContent.message} color="primary"></Chip>
+                  <Chip label={messageContent.message} color="primary" />
                 </Container>
                 <br />
               </Box>
@@ -71,10 +71,13 @@ function Chatter({ socket, username, room }) {
       <Grid container spacing={1} alignItems="center">
         <Grid item>
           <TextField
+            inputProps={{ maxLength: 160 }}
+            hiddenLabel
             type="text"
             value={currentMessage}
             placeholder="Aa"
             variant="filled"
+            size="small"
             onChange={(e) => {
               setCurrentMessage(e.target.value);
             }}
