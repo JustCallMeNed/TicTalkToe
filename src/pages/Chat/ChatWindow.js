@@ -10,7 +10,8 @@ import Chat from "./Chat";
 
 export default function ChatWindow({ chatVisible }) {
   return (
-    <Box id="chatWindow" style={{ opacity: chatVisible ? 1 : 0 }}>
+    // Need to fix the style here so div isn't clickable
+    <Box id="chatWindow" style={{ bottom: chatVisible ? "5px" : "-1000px" }}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
