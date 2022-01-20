@@ -27,6 +27,7 @@ function Chat() {
               <TextField
                 type="text"
                 label="Name"
+                autoComplete="off"
                 variant="outlined"
                 onChange={(e) => {
                   setUsername(e.target.value);
@@ -37,6 +38,7 @@ function Chat() {
               <TextField
                 type="text"
                 label="Room ID"
+                autoComplete="off"
                 variant="outlined"
                 onChange={(e) => {
                   setRoom(e.target.value);
