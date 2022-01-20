@@ -1,12 +1,4 @@
-import {
-  Typography,
-  Box,
-  Container,
-  Grid,
-  Chip,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Typography, Box, Container, Grid, Chip, TextField, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import React, { useState, useEffect } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
@@ -26,10 +18,7 @@ function Chatter({ socket, username, room }) {
         room: room,
         author: username,
         message: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
       };
 
       await socket.emit("send_message", messageData);
@@ -79,7 +68,7 @@ function Chatter({ socket, username, room }) {
                     className="message-content"
                     label={messageContent.message}
                     color="primary"
-                  ></Chip>
+                  />
                 </Container>
                 <br />
               </Box>
@@ -92,10 +81,13 @@ function Chatter({ socket, username, room }) {
       <Grid container spacing={1} alignItems="center">
         <Grid item>
           <TextField
+            inputProps={{ maxLength: 160 }}
+            hiddenLabel
             type="text"
             value={currentMessage}
             placeholder="Aa"
             variant="filled"
+            size="small"
             onChange={(e) => {
               setCurrentMessage(e.target.value);
             }}
@@ -105,11 +97,7 @@ function Chatter({ socket, username, room }) {
           />
         </Grid>
         <Grid item>
-          <Button
-            size="large"
-            variant="contained"
-            onClick={() => SubmitMessage()}
-          >
+          <Button size="large" variant="contained" onClick={() => SubmitMessage()}>
             <SendIcon />
           </Button>
         </Grid>
