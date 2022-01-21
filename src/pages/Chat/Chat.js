@@ -43,6 +43,9 @@ function Chat() {
                 onChange={(e) => {
                   setRoom(e.target.value);
                 }}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && joinRoom();
+                }}
               />
             </Grid>
             <Grid item s>
