@@ -1,5 +1,7 @@
-import { Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import { Typography, Box, Container, Grid, Chip, TextField, Button } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import React, { useRef, useState, useEffect } from "react";
+import "./Chatter.css";
 
 function Chatter({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -15,10 +17,7 @@ function Chatter({ socket, username, room }) {
         room: room,
         author: username,
         message: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
       };
 
       await socket.emit("send_message", messageData);
@@ -33,42 +32,76 @@ function Chatter({ socket, username, room }) {
     });
   }, [socket]);
 
-  // Ben: I need to finish MUI on this tonight
+  const divRef = useRef(null);
+  useEffect(() => {
+    divRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messageList]);
+
   return (
-    <div className="chat-window">
-      <Typography variant="h6">Live Chat</Typography>
-      <div className="message-container">
-        {messageList.map((messageContent) => {
-          return (
-            <div id={username === messageContent.author ? "you" : "other"}>
-              <div>
-                <div>
-                  <p>{messageContent.message}</p>
-                </div>
-                <div>
-                  <p>{messageContent.time}</p>
-                  <p>{messageContent.author}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        <input
-          type="text"
-          value={currentMessage}
-          placeholder="How you dooin?..."
-          onChange={(e) => {
-            setCurrentMessage(e.target.value);
-          }}
-          onKeyPress={(e) => {
-            e.key === "Enter" && sendMessage();
-          }}
-        />
-        <button onClick={() => SubmitMessage()}>&#9658;</button>
-      </div>
-    </div>
+    <Box className="chat-window">
+      <Container>
+        <Typography variant="h6">Room# {room}</Typography>
+
+        <Container className="message-container">
+          {messageList.map((messageContent, i) => {
+            return (
+              <Box
+                className="message"
+                id={username === messageContent.author ? "you" : "other"}
+                key={i}
+              >
+                <Grid container spacing={1}>
+                  <Grid item>
+                    <Typography className="author" variant="">
+                      {messageContent.author}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography>{messageContent.time}</Typography>
+                  </Grid>
+                </Grid>
+                <Container>
+                  <Chip
+                    className="message-content"
+                    label={messageContent.message}
+                    color="primary"
+                    ref={divRef}
+                  />
+                </Container>
+                <br />
+              </Box>
+            );
+          })}
+        </Container>
+      </Container>
+
+      <br />
+      <Grid container spacing={1} alignItems="center">
+        <Grid item>
+          <TextField
+            inputProps={{ maxLength: 120 }}
+            hiddenLabel
+            type="text"
+            autoComplete="off"
+            value={currentMessage}
+            placeholder="Aa"
+            variant="filled"
+            size="small"
+            onChange={(e) => {
+              setCurrentMessage(e.target.value);
+            }}
+            onKeyPress={(e) => {
+              e.key === "Enter" && sendMessage();
+            }}
+          />
+        </Grid>
+        <Grid item>
+          <Button size="large" variant="contained" onClick={() => SubmitMessage()}>
+            <SendIcon />
+          </Button>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

@@ -1,6 +1,6 @@
 #chatWindow {
   border: #1976d2 5px solid;
-  position: absolute;
+  position: fixed;
   bottom: 5px;
-  width: 80em;
+  width: 50em;
 }

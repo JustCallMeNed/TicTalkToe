@@ -1,4 +1,4 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography, Box } from "@mui/material";
 import React, { useState } from "react";
 import io from "socket.io-client";
 import Chatter from "./Chatter";
@@ -18,16 +18,16 @@ function Chat() {
   };
 
   return (
-    <div className="Chat">
+    <Box className="Chat">
       {!showChat ? (
-        <div className="joinChatContainer">
-          <br />
-          <Typography variant="h6">Let's Chat</Typography>
+        <Box className="joinChatContainer">
+          <Typography variant="h6">Username and Room#</Typography>
           <Grid container spacing={1} alignItems="center">
             <Grid item s>
               <TextField
                 type="text"
                 label="Name"
+                autoComplete="off"
                 variant="outlined"
                 onChange={(e) => {
                   setUsername(e.target.value);
@@ -38,9 +38,13 @@ function Chat() {
               <TextField
                 type="text"
                 label="Room ID"
+                autoComplete="off"
                 variant="outlined"
                 onChange={(e) => {
                   setRoom(e.target.value);
+                }}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && joinRoom();
                 }}
               />
             </Grid>
@@ -50,11 +54,11 @@ function Chat() {
               </Button>
             </Grid>
           </Grid>
-        </div>
+        </Box>
       ) : (
         <Chatter socket={socket} username={username} room={room} />
       )}
-    </div>
+    </Box>
   );
 }
 

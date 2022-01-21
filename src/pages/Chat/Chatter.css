@@ -1,0 +1,50 @@
+.author {
+  font-weight: bold;
+}
+.message-container {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
+}
+
+::selection {
+  background: rgb(0, 0, 0);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(25, 118, 210);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(71, 153, 241);
+}
+
+#you {
+  justify-content: start;
+}
+
+#you .message-content {
+  justify-content: flex-start;
+}
+
+#other {
+  justify-content: end;
+}
+
+#other .message-content {
+  justify-content: flex-end;
+  background-color: rgb(220 60 60);
+}
