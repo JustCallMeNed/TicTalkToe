@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import "../Game/Game.css";
 import CordsRow from "./components/CordsRow";
+// import { setMark } from "./components/CordBox";
 const Game = () => {
+  const [refresh, setRefresh] = useState(false);
+  // pass refresh value to child elements, use it to cause refresh on onClick?
   const boxRef = useRef(null);
   const [turn, setTurn] = useState("X");
   const [winState, setWinState] = useState(false);
@@ -59,7 +62,6 @@ const Game = () => {
             ticBoard[2][2] !== ""
           ) {
             setTieState(true);
-            console.log("TIE STATE =", tieState);
           }
           // ^^^ can probably replace with a for() loop at some point but in the meantime, this works!
         }
@@ -77,6 +79,8 @@ const Game = () => {
           setTurn={setTurn}
           ticBoard={ticBoard}
           setTicBoard={setTicBoard}
+          refresh={refresh}
+          setRefresh={setRefresh}
         />
         <CordsRow
           rowIndex={1}
@@ -86,6 +90,8 @@ const Game = () => {
           setTurn={setTurn}
           ticBoard={ticBoard}
           setTicBoard={setTicBoard}
+          refresh={refresh}
+          setRefresh={setRefresh}
         />
         <CordsRow
           rowIndex={2}
@@ -95,6 +101,8 @@ const Game = () => {
           setTurn={setTurn}
           ticBoard={ticBoard}
           setTicBoard={setTicBoard}
+          refresh={refresh}
+          setRefresh={setRefresh}
         />
       </div>
       {winState === true ? (
@@ -148,6 +156,7 @@ const Game = () => {
             setWinState(false);
             setTieState(false);
             setTurn("X");
+            setRefresh(true);
             //reload CordsRow/CordBox components with new state
           }}
         >

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const CordBox = ({
   turn,
   setTurn,
@@ -8,8 +8,18 @@ const CordBox = ({
   cordIndex,
   rowIndex,
   boxIndex,
+  refresh,
+  setRefresh,
 }) => {
   const [mark, setMark] = useState("");
+  // useEffect(() => {
+  //   if (refresh === true) {
+  //     setMark("");
+  //   }
+  //   return setRefresh(false);
+  // }),
+  //   [];
+  // pass "refresh" value from Game.js, reset mark to empty string?
 
   return (
     <div
