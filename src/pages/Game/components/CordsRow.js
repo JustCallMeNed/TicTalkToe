@@ -18,10 +18,12 @@ const CordsRow = ({
       { y: 0, opacity: 1, delay: 0.25, stagger: 0.15 }
     );
   }, []);
+
   return (
     <div className="rows" id={`${row}Row`} ref={rowRef}>
       {cordGrid.map((cord, boxIndex) => (
         <CordBox
+          key={rowIndex + boxIndex}
           rowIndex={rowIndex}
           cordIndex={cord}
           boxIndex={boxIndex}

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import "../Game/Game.css";
 import CordsRow from "./components/CordsRow";
-// import CordBox from "./components/CordBox";
 const Game = () => {
   const boxRef = useRef(null);
   const [turn, setTurn] = useState("X");
@@ -14,13 +13,30 @@ const Game = () => {
     ["", "", ""],
   ]);
 
+  const boardSpin = () => {
+    gsap.timeline(
+      gsap.to(boxRef.current, {
+        duration: 3,
+        rotation: "1800",
+        ease: "power2",
+      }),
+      gsap.to(".cords", {
+        delay: 3,
+        duration: 1,
+        stagger: 0.2,
+        rotation: "1080",
+        ease: "power1",
+      })
+    );
+  };
+
   useEffect(() => {
     gsap.to(boxRef.current, { rotation: "+=360", opacity: 50 });
   }, []);
 
   useEffect(() => {
     if (winState === false) {
-      //X/Y COORDINATES ARE LABELED BACKWARDS, BUT AT THIS POINT, FUCK IT
+      //X/Y COORDINATES ARE LABELED BACKWARDS - X IS ROW NUMBER, Y IS POSITION ON ROW - BUT AT THIS POINT, FUCK IT
       for (let x = 0; x < ticBoard.length; x++) {
         const rowWinCheckX = ticBoard[x].every((rowIndex) => rowIndex === "X");
         const rowWinCheckO = ticBoard[x].every((rowIndex) => rowIndex === "O");
@@ -48,17 +64,24 @@ const Game = () => {
 
           if (diagWinCheck0 || diagWinCheck1) {
             setWinState(true);
+          } else if (
+            ticBoard[0][0] !== "" &&
+            ticBoard[0][1] !== "" &&
+            ticBoard[0][2] !== "" &&
+            ticBoard[1][0] !== "" &&
+            ticBoard[1][1] !== "" &&
+            ticBoard[1][2] !== "" &&
+            ticBoard[2][0] !== "" &&
+            ticBoard[2][1] !== "" &&
+            ticBoard[2][2] !== ""
+          ) {
+            setTieState(true);
           }
+          // ^^^ can probably replace with a for() loop at some point but in the meantime, this works!
         }
       }
-      // } else if (ticBoard[x][y] !== "") {
-      //   setTieState(true);
-      //   console.log("TIE STATE");
-      // ^^^ NOT CURRENTLY ABLE TO FIRE - "x" and "y" variables undefined - scope issue
     }
-  }, [turn]);
-  // console.log(ticBoard[0][0], ticBoard[1][1], ticBoard[2][2]);
-  // console.log(ticBoard[0][2], ticBoard[1][1], ticBoard[2][0]);
+  }, [turn, ticBoard, winState, tieState]);
   return (
     <>
       <div id="gameBoard" ref={boxRef}>
@@ -109,26 +132,7 @@ const Game = () => {
       ) : null}
       {/* VVV Widget Button that makes the board go WHOOOOOOOO - not permanent */}
       <div id="widgetBtn">
-        <button
-          onClick={() => {
-            gsap.timeline(
-              gsap.to(boxRef.current, {
-                duration: 3,
-                rotation: "1800",
-                ease: "power2",
-              }),
-              gsap.to(".cords", {
-                delay: 3,
-                duration: 1,
-                stagger: 0.2,
-                rotation: "1080",
-                ease: "power1",
-              })
-            );
-          }}
-        >
-          Whee!
-        </button>
+        <button onClick={() => boardSpin()}>Whee!</button>
       </div>
       <div id="resetBtn">
         <button
@@ -141,7 +145,6 @@ const Game = () => {
             setWinState(false);
             setTieState(false);
             setTurn("X");
-            //reload CordsRow/CordBox components with new state
           }}
         >
           Reset
