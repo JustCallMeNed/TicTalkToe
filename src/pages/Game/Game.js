@@ -36,7 +36,7 @@ const Game = () => {
 
   useEffect(() => {
     if (winState === false) {
-      //X/Y COORDINATES ARE LABELED BACKWARDS - X IS ROW NUMBER, Y IS POSITION ON ROW - BUT AT THIS POINT, FUCK IT
+      //X/Y COORDINATES ARE LABELED BACKWARDS - X IS ROW NUMBER/rowIndex, Y IS POSITION ON ROW/boxIndex - BUT AT THIS POINT, FUCK IT
       for (let x = 0; x < ticBoard.length; x++) {
         const rowWinCheckX = ticBoard[x].every((rowIndex) => rowIndex === "X");
         const rowWinCheckO = ticBoard[x].every((rowIndex) => rowIndex === "O");
@@ -118,7 +118,7 @@ const Game = () => {
           <h1>WINNER</h1>
         </div>
       ) : tieState === true ? (
-        <div className="playerturn" id="winbanner">
+        <div className="playerturn" id="drawbanner">
           <h1>DRAW</h1>
         </div>
       ) : turn === "X" ? (
