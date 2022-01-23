@@ -9,8 +9,6 @@ const CordsRow = ({
   row,
   rowIndex,
   cordGrid,
-  refresh,
-  setRefresh,
 }) => {
   const rowRef = useRef(null);
   useEffect(() => {
@@ -21,23 +19,11 @@ const CordsRow = ({
     );
   }, []);
 
-  // useEffect(() => {
-  //   if (refresh === true) {
-  //     setTicBoard([
-  //       ["", "", ""],
-  //       ["", "", ""],
-  //       ["", "", ""],
-  //     ]);
-  //   }
-  //   setRefresh(false);
-  // }),
-  //   [];
-  //pass refresh value from Game.js, refresh whole row?
-
   return (
     <div className="rows" id={`${row}Row`} ref={rowRef}>
       {cordGrid.map((cord, boxIndex) => (
         <CordBox
+          key={rowIndex + boxIndex}
           rowIndex={rowIndex}
           cordIndex={cord}
           boxIndex={boxIndex}
@@ -45,8 +31,6 @@ const CordsRow = ({
           setTurn={setTurn}
           ticBoard={ticBoard}
           setTicBoard={setTicBoard}
-          refresh={refresh}
-          setRefresh={setRefresh}
         />
       ))}
     </div>

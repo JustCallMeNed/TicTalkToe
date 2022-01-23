@@ -2,10 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import "../Game/Game.css";
 import CordsRow from "./components/CordsRow";
-// import { setMark } from "./components/CordBox";
 const Game = () => {
-  const [refresh, setRefresh] = useState(false);
-  // pass refresh value to child elements, use it to cause refresh on onClick?
   const boxRef = useRef(null);
   const [turn, setTurn] = useState("X");
   const [winState, setWinState] = useState(false);
@@ -15,6 +12,23 @@ const Game = () => {
     ["", "", ""],
     ["", "", ""],
   ]);
+
+  const boardSpin = () => {
+    gsap.timeline(
+      gsap.to(boxRef.current, {
+        duration: 3,
+        rotation: "1800",
+        ease: "power2",
+      }),
+      gsap.to(".cords", {
+        delay: 3,
+        duration: 1,
+        stagger: 0.2,
+        rotation: "1080",
+        ease: "power1",
+      })
+    );
+  };
 
   useEffect(() => {
     gsap.to(boxRef.current, { rotation: "+=360", opacity: 50 });
@@ -79,8 +93,6 @@ const Game = () => {
           setTurn={setTurn}
           ticBoard={ticBoard}
           setTicBoard={setTicBoard}
-          refresh={refresh}
-          setRefresh={setRefresh}
         />
         <CordsRow
           rowIndex={1}
@@ -90,8 +102,6 @@ const Game = () => {
           setTurn={setTurn}
           ticBoard={ticBoard}
           setTicBoard={setTicBoard}
-          refresh={refresh}
-          setRefresh={setRefresh}
         />
         <CordsRow
           rowIndex={2}
@@ -101,8 +111,6 @@ const Game = () => {
           setTurn={setTurn}
           ticBoard={ticBoard}
           setTicBoard={setTicBoard}
-          refresh={refresh}
-          setRefresh={setRefresh}
         />
       </div>
       {winState === true ? (
@@ -124,30 +132,11 @@ const Game = () => {
       ) : null}
       {/* VVV Widget Button that makes the board go WHOOOOOOOO - not permanent */}
       <div id="widgetBtn">
-        <button
-          onClick={() => {
-            gsap.timeline(
-              gsap.to(boxRef.current, {
-                duration: 3,
-                rotation: "1800",
-                ease: "power2",
-              }),
-              gsap.to(".cords", {
-                delay: 3,
-                duration: 1,
-                stagger: 0.2,
-                rotation: "1080",
-                ease: "power1",
-              })
-            );
-          }}
-        >
-          Whee!
-        </button>
+        <button onClick={() => boardSpin()}>Whee!</button>
       </div>
       <div id="resetBtn">
         <button
-          onClick={(e) => {
+          onClick={() => {
             setTicBoard([
               ["", "", ""],
               ["", "", ""],
@@ -156,15 +145,6 @@ const Game = () => {
             setWinState(false);
             setTieState(false);
             setTurn("X");
-            setRefresh(true);
-            console.log(
-              `Win state = ${winState}`,
-              `Tie state = ${tieState}`,
-              `Turn = ${turn}`,
-              `Refresh = ${refresh}`,
-              `Board values = ${ticBoard}`
-            );
-            //reload CordsRow/CordBox components with new state
           }}
         >
           Reset
