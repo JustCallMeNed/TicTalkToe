@@ -147,7 +147,7 @@ const Game = () => {
       </div>
       <div id="resetBtn">
         <button
-          onClick={() => {
+          onClick={(e) => {
             setTicBoard([
               ["", "", ""],
               ["", "", ""],
@@ -157,6 +157,13 @@ const Game = () => {
             setTieState(false);
             setTurn("X");
             setRefresh(true);
+            console.log(
+              `Win state = ${winState}`,
+              `Tie state = ${tieState}`,
+              `Turn = ${turn}`,
+              `Refresh = ${refresh}`,
+              `Board values = ${ticBoard}`
+            );
             //reload CordsRow/CordBox components with new state
           }}
         >
