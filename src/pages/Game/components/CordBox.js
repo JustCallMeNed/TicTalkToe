@@ -32,7 +32,7 @@ const CordBox = ({
           setTicBoard(copy);
           setMark(turn);
           setTurn(turn === "X" ? "O" : "X");
-        } else if (cords.currentState !== "") {
+        } else if (cords.currentState !== "" || refresh === true) {
           setMark("");
         }
       }}
