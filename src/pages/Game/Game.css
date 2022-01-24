@@ -9,6 +9,7 @@
 button {
   padding: 1em;
   border: 0.5em outset black;
+  margin: 0.2em;
 }
 #widgetBtn {
   display: flex;
@@ -47,7 +48,7 @@ button {
   font-size: xx-large;
   height: 3em;
   width: 3em;
-  border: solid 0.08em black;
+  border: double 0.2em black;
   color: black;
   background-color: rgba(255, 255, 255, 0.767);
 }
