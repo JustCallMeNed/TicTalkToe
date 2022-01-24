@@ -10,7 +10,6 @@ import Chat from "./Chat";
 
 export default function ChatWindow({ chatVisible }) {
   return (
-    // Need to fix the style here so div isn't clickable
     <Box id="chatWindow" style={{ bottom: chatVisible ? "5px" : "-1000px" }}>
       <Accordion>
         <AccordionSummary
