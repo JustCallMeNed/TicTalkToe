@@ -12,7 +12,17 @@ const Game = () => {
     ["", "", ""],
     ["", "", ""],
   ]);
-
+  //VVV reset game function VVV
+  const newGame = () => {
+    setTicBoard([
+      ["", "", ""],
+      ["", "", ""],
+      ["", "", ""],
+    ]);
+    setWinState(false);
+    setTieState(false);
+    setTurn("X");
+  };
   const boardSpin = () => {
     gsap.timeline(
       gsap.to(boxRef.current, {
@@ -135,20 +145,25 @@ const Game = () => {
         <button onClick={() => boardSpin()}>Whee!</button>
       </div>
       <div id="resetBtn">
-        <button
-          onClick={() => {
-            setTicBoard([
-              ["", "", ""],
-              ["", "", ""],
-              ["", "", ""],
-            ]);
-            setWinState(false);
-            setTieState(false);
-            setTurn("X");
-          }}
-        >
-          Reset
-        </button>
+        {winState === true ? (
+          <button
+            onClick={() => {
+              newGame();
+            }}
+          >
+            Reset
+          </button>
+        ) : tieState === true ? (
+          <button
+            onClick={() => {
+              newGame();
+            }}
+          >
+            Reset
+          </button>
+        ) : (
+          <button disabled="true">Reset</button>
+        )}
       </div>
     </>
   );

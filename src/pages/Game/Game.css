@@ -9,6 +9,7 @@
 button {
   padding: 1em;
   border: 0.5em outset black;
+  margin: 0.2em;
 }
 #widgetBtn {
   display: flex;
@@ -47,7 +48,7 @@ button {
   font-size: xx-large;
   height: 3em;
   width: 3em;
-  border: solid 0.08em black;
+  border: double 0.2em black;
   color: black;
   background-color: rgba(255, 255, 255, 0.767);
 }
@@ -57,8 +58,10 @@ button {
   place-items: center;
   text-align: center;
   font-size: x-large;
-  border: inset 1em rgb(117, 216, 255);
-  margin-top: 1em;
+  background-color: rgb(0, 157, 219);
+  border: outset 1em rgb(43, 195, 255);
+  margin-top: 1.2em;
+  margin-bottom: 0.4em;
 }
 
 #winbanner {
