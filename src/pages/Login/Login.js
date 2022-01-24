@@ -1,11 +1,17 @@
 import "./Login.css";
+import axios from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 // import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useState } from "react";
+
 const Login = () => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Box className="loginPage">
       <Typography variant="h4" component="h4">
@@ -18,6 +24,9 @@ const Login = () => {
           <Grid item spacing={1} className="username">
             <TextField
               type="text"
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
               id="name"
               label="Username"
               variant="outlined"
@@ -32,6 +41,9 @@ const Login = () => {
           <Grid item spacing={1} className="password">
             <TextField
               type="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               id="pass"
               label="Password"
               variant="outlined"
@@ -47,7 +59,17 @@ const Login = () => {
         {/* Submit Form button VVV */}
         <Grid container rowSpacing={1} columnSpacing={{ sm: 2 }}>
           <Grid item>
-            <Button variant="contained" id="loginSubmit">
+            <Button
+              variant="contained"
+              id="loginSubmit"
+              onClick={() => {
+                console.log(userName, password);
+                axios.post("http://localhost:3001/user/create", {
+                  userName,
+                  password,
+                });
+              }}
+            >
               Submit
             </Button>
           </Grid>
