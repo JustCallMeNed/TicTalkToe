@@ -1,5 +1,4 @@
 const express = require("express");
-const { Sequelize } = require("sequelize");
 const app = express();
 const db = require("./back-end/models");
 const http = require("http");
@@ -9,7 +8,6 @@ const { Server } = require("socket.io");
 
 const path = require("path");
 const port = process.env.PORT || 3001;
-const sequelize = new Sequelize("postgres://user:postgres:5432/dbname");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,15 +37,16 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
-  console.log("Now THIS is pod racing");
-});
-
-// routes
 require("./back-end/routes/api-routes.js")(app);
 
+// server.listen(3002, () => {
+//   console.log("Now THIS is pod racing");
+// });
+
+// routes
+
 db.sequelize.sync().then(() => {
-  app.listen(port, () => {
+  server.listen(port, () => {
     console.log(`App is listening on port: ${port}`);
   });
 });
