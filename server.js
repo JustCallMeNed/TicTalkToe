@@ -39,14 +39,20 @@ io.on("connection", (socket) => {
 
 require("./back-end/routes/api-routes.js")(app);
 
-// server.listen(3002, () => {
-//   console.log("Now THIS is pod racing");
-// });
+server.listen(3002, (err) => {
+  if (err) {
+    return console.log("Error", err);
+  }
+  console.log("Now THIS is pod racing");
+});
 
 // routes
 
-db.sequelize.sync().then(() => {
-  server.listen(port, () => {
-    console.log(`App is listening on port: ${port}`);
-  });
-});
+// db.sequelize.sync().then(() => {
+//   server.listen(port, (err) => {
+//     if (err) {
+//       return console.log("Error", err);
+//     }
+//     console.log(`App is listening on port: ${port}`);
+//   });
+// });
