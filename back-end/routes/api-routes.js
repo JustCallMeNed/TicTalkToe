@@ -9,6 +9,12 @@ module.exports = (app) => {
   });
   // router.post("/user/login", user.login);
 
+  // This is Ben trying things out
+  app
+    .route("/user")
+    .get((req, res) => {})
+    .post((req, res) => {});
+
   //   VIEW ROUTE
   app.use("/", router);
 };

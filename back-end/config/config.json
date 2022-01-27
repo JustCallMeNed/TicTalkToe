@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "postgres",
-    "password": "!Oogieboogie2020",
+    "password": "password",
     "database": "tictalktoe",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "root",
-    "password": "password",
+    "password": "!Oogieboogie2020",
     "database": "tictalktoe",
     "host": "127.0.0.1",
     "dialect": "postgres"
