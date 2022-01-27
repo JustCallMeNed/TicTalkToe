@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const db = require("./back-end/models");
 const http = require("http");
-const server = http.createServer(app);
+var server = http.createServer(app);
 const cors = require("cors");
 const { Server } = require("socket.io");
 
@@ -38,21 +38,10 @@ io.on("connection", (socket) => {
 });
 
 require("./back-end/routes/api-routes.js")(app);
-
-server.listen(3002, (err) => {
-  if (err) {
-    return console.log("Error", err);
-  }
-  console.log("Now THIS is pod racing");
-});
-
 // routes
 
-// db.sequelize.sync().then(() => {
-//   server.listen(port, (err) => {
-//     if (err) {
-//       return console.log("Error", err);
-//     }
-//     console.log(`App is listening on port: ${port}`);
-//   });
-// });
+db.sequelize.sync().then(() => {
+  server.listen(port, () => {
+    console.log(`App is listening on port: ${port}`);
+  });
+});
