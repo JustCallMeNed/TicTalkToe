@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-const Login = () => {
+const Login = ({ setLogUser }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -82,11 +82,14 @@ const Login = () => {
               variant="contained"
               id="loginSubmit"
               onClick={async () => {
-                console.log(userName, password);
-                await axios.get("http://localhost:3001/user/findAll", {
-                  userName,
-                  password,
-                });
+                const loggedInUser = await axios.get(
+                  "http://localhost:3001/user/findAll",
+                  {
+                    userName,
+                    password,
+                  }
+                );
+                setLogUser(loggedInUser.data.username);
               }}
             >
               Submit

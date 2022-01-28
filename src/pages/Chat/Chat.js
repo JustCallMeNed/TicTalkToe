@@ -5,8 +5,8 @@ import Chatter from "./Chatter";
 
 const socket = io.connect("http://localhost:3001");
 
-function Chat() {
-  const [username, setUsername] = useState("");
+function Chat({ logUser }) {
+  const [username, setUsername] = useState(logUser);
   const [room, setRoom] = useState("");
   const [showChat, setShowChat] = useState(false);
 

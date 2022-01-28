@@ -18,13 +18,13 @@ exports.create = (req, res) => {
     });
   console.log(req.body);
 };
-exports.findAll = (req, res) => {
+exports.findOne = (req, res) => {
   const userName = req.query.userName;
   var condition = userName
     ? { userName: { [Op.like]: `%${userName}%` } }
     : null;
 
-  User.findAll({ where: condition })
+  User.findOne({ where: condition })
     .then((data) => {
       res.send(data);
     })
