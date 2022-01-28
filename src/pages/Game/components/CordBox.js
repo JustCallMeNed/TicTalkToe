@@ -16,6 +16,8 @@ const CordBox = ({
         if (ticBoard[rowIndex][boxIndex] === "") {
           let copy = [...ticBoard];
           copy[rowIndex][boxIndex] = turn;
+          //send ticBoard here -- "the thing I need to send is what I am setting ticboard to." > copy
+          console.log(ticBoard[rowIndex][boxIndex]);
           setTicBoard(copy);
           setTurn(turn === "X" ? "O" : "X");
         }
