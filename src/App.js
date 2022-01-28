@@ -5,6 +5,7 @@ import Game from "./pages/Game/Game";
 import Home from "./pages/Home/Home";
 import PersistentDrawerLeft from "./pages/MUI/PersistentDrawerLeft";
 import Login from "./pages/Login/Login";
+import Profile from "./pages/Profile/Profile.js";
 import { useState } from "react";
 
 function App() {
@@ -12,8 +13,9 @@ function App() {
   const pageContent = (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="login" element={<Login setLogUser={setLogUser} />} />
+      <Route path="profile" element={<Profile logUser={logUser} />} />
       <Route path="game" element={<Game logUser={logUser} />} />
+      <Route path="login" element={<Login setLogUser={setLogUser} />} />
       <Route path="chat" element={<Chat logUser={logUser} />} />
     </Routes>
   );
@@ -21,7 +23,7 @@ function App() {
   return (
     <>
       <Router>
-        <PersistentDrawerLeft pageContent={pageContent} />
+        <PersistentDrawerLeft logUser={logUser} pageContent={pageContent} />
       </Router>
     </>
   );

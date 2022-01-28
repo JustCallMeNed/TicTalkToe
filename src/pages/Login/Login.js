@@ -1,4 +1,5 @@
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -28,6 +29,12 @@ const Login = ({ setLogUser }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = "../profile";
+    navigate(path);
+  };
 
   return (
     <Box className="loginPage">
@@ -89,7 +96,9 @@ const Login = ({ setLogUser }) => {
                     password,
                   }
                 );
+                // Need to write conditional statement "If userName and password in field match Then setLogUser"
                 setLogUser(loggedInUser.data.username);
+                routeChange();
               }}
             >
               Submit
@@ -97,14 +106,7 @@ const Login = ({ setLogUser }) => {
           </Grid>
           <Grid item>
             {/* Clear All Fields button VVV */}
-            <Button
-              variant="contained"
-              id="loginSubmit"
-              type="reset"
-              // onClick={() => {
-              //   alert("hello there");
-              // }}
-            >
+            <Button variant="contained" id="clearLogin" type="reset">
               Clear
             </Button>
           </Grid>
@@ -166,20 +168,21 @@ const Login = ({ setLogUser }) => {
                   <Grid item>
                     <Button
                       variant="contained"
-                      id="loginSubmit"
+                      id="signUpSubmit"
                       onClick={() => {
                         console.log(userName, password);
                         axios.post("http://localhost:3001/user/create", {
                           userName,
                           password,
                         });
+                        setOpen(false);
                       }}
                     >
                       Submit
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button variant="contained" id="loginSubmit" type="reset">
+                    <Button variant="contained" id="clearSignUp" type="reset">
                       Clear
                     </Button>
                   </Grid>

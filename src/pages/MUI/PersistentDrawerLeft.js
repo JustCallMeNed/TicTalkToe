@@ -18,11 +18,10 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import LoginIcon from "@mui/icons-material/Login";
 import CasinoIcon from "@mui/icons-material/Casino";
 import HomeIcon from "@mui/icons-material/Home";
+import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
 import "./PersistentDrawerLeft.css";
 import ChatWindow from "../Chat/ChatWindow";
@@ -76,7 +75,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft({ pageContent }) {
+export default function PersistentDrawerLeft({ logUser, pageContent }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -135,6 +134,14 @@ export default function PersistentDrawerLeft({ pageContent }) {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
+          <Link class="link" to="profile">
+            <ListItem button>
+              <ListItemIcon>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary="Profile" id="profile" />
+            </ListItem>
+          </Link>
           <Link class="link" to="game">
             <ListItem button>
               <ListItemIcon>
@@ -154,7 +161,6 @@ export default function PersistentDrawerLeft({ pageContent }) {
           </Link>
         </List>
         <Divider />
-        {/* This is an example of mapping drawer buttons, will be deleted later */}
         <List>
           <ListItem button onClick={() => setChatVisible(!chatVisible)}>
             <ListItemIcon>
@@ -163,13 +169,12 @@ export default function PersistentDrawerLeft({ pageContent }) {
             <ListItemText primary="Chat" />
           </ListItem>
         </List>
-        {/* Above will be replaced */}
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
         {/* Content here */}
         <Typography>{pageContent}</Typography>
-        <ChatWindow chatVisible={chatVisible} />
+        <ChatWindow logUser={logUser} chatVisible={chatVisible} />
       </Main>
     </Box>
   );
