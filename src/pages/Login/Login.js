@@ -81,9 +81,9 @@ const Login = () => {
             <Button
               variant="contained"
               id="loginSubmit"
-              onClick={() => {
+              onClick={async () => {
                 console.log(userName, password);
-                axios.post("http://localhost:3001/user/create", {
+                await axios.get("http://localhost:3001/user/findAll", {
                   userName,
                   password,
                 });

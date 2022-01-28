@@ -7,13 +7,17 @@ module.exports = (app) => {
   router.post("/user/create", (req, res) => {
     user.create(req, res);
   });
-  // router.post("/user/login", user.login);
-
-  // This is Ben trying things out
-  app
-    .route("/user")
-    .get((req, res) => {})
-    .post((req, res) => {});
+  router.delete("/user/delete:id", (req, res) => {
+    user.destroy(req, res);
+  });
+  router.get("/user/findAll", (req, res) => {
+    user.findAll(req, res);
+  });
+  // // This is Ben trying things out
+  // app
+  //   .route("/user")
+  //   .get((req, res) => {})
+  //   .post((req, res) => {});
 
   //   VIEW ROUTE
   app.use("/", router);
