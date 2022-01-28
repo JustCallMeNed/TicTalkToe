@@ -49,7 +49,7 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`,
+          message: `Cannot update User with id=${id}`,
         });
       }
     })
@@ -73,7 +73,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete User with id=${id}. Maybe Tutorial was not found!`,
+          message: `Cannot delete User with id=${id}`,
         });
       }
     })
@@ -83,8 +83,6 @@ exports.delete = (req, res) => {
       });
     });
 };
-
-// Find all published Tutorials
 
 // exports.get = (req, res) => {
 //   const user = {
