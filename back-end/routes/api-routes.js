@@ -7,11 +7,11 @@ module.exports = (app) => {
   router.post("/user/create", (req, res) => {
     user.create(req, res);
   });
-  router.delete("/user/delete:id", (req, res) => {
+  router.delete("/user/delete/:id", (req, res) => {
     user.destroy(req, res);
   });
   router.get("/user/findAll", (req, res) => {
-    user.findAll(req, res);
+    user.findOne(req, res);
   });
   // // This is Ben trying things out
   // app
