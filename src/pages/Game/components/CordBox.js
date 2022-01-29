@@ -12,6 +12,7 @@ const CordBox = ({
   boxIndex,
   logUser,
 }) => {
+  socket.connect("http://localhost:3001");
   const sendMove = async () => {
     const boardData = {
       room: "TestRoom",
@@ -25,10 +26,10 @@ const CordBox = ({
 
   useEffect(() => {
     socket.on("receive_board", (boardData) => {
-      console.log("Ping!", boardData);
-      setTicBoard((boardData) => [...ticBoard[rowIndex][boxIndex], boardData]);
+      console.log("Ping!", boardData.board);
+      setTicBoard((boardData) => [...boardData]);
     });
-  }, [socket]);
+  }, [socket, ticBoard]);
 
   return (
     <div
