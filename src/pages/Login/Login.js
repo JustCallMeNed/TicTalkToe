@@ -125,7 +125,7 @@ const Login = ({ setLogUser }) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Enter New Username and Password
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }} container={"span"}>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }} component={"div"}>
               <form>
                 <Grid container spacing={2} columns={1} direction="column">
                   <Grid item className="username">
