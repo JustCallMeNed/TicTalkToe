@@ -126,7 +126,7 @@ export default function PersistentDrawerLeft({ logUser, pageContent }) {
         </DrawerHeader>
         <Divider />
         <List>
-          <Link class="link" to="/">
+          <Link className="link" to="/">
             <ListItem button>
               <ListItemIcon>
                 <HomeIcon />
@@ -134,7 +134,7 @@ export default function PersistentDrawerLeft({ logUser, pageContent }) {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <Link class="link" to="profile">
+          <Link className="link" to="profile">
             <ListItem button>
               <ListItemIcon>
                 <PersonIcon />
@@ -142,7 +142,7 @@ export default function PersistentDrawerLeft({ logUser, pageContent }) {
               <ListItemText primary="Profile" id="profile" />
             </ListItem>
           </Link>
-          <Link class="link" to="game">
+          <Link className="link" to="game">
             <ListItem button>
               <ListItemIcon>
                 <CasinoIcon />
@@ -150,7 +150,7 @@ export default function PersistentDrawerLeft({ logUser, pageContent }) {
               <ListItemText primary="Game" id="game" />
             </ListItem>
           </Link>
-          <Link class="link" to="login">
+          <Link className="link" to="login">
             <ListItem button>
               <ListItemIcon>
                 {/* Look up more ListItemIcons */}
@@ -173,7 +173,7 @@ export default function PersistentDrawerLeft({ logUser, pageContent }) {
       <Main open={open}>
         <DrawerHeader />
         {/* Content here */}
-        <Typography>{pageContent}</Typography>
+        <Typography component={"span"}>{pageContent}</Typography>
         <ChatWindow logUser={logUser} chatVisible={chatVisible} />
       </Main>
     </Box>
