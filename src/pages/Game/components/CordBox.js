@@ -26,7 +26,7 @@ const CordBox = ({
   useEffect(() => {
     socket.on("receive_board", (boardData) => {
       console.log("Ping!", boardData);
-      setTicBoard((boardData) => [...ticBoard, boardData]);
+      setTicBoard((boardData) => [...ticBoard[rowIndex][boxIndex], boardData]);
     });
   }, [socket]);
 

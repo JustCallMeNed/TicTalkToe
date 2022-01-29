@@ -34,7 +34,7 @@ io.on("connection", (socket) => {
 
   // ticboard send function
   socket.on("send_board", (boardData) => {
-    socket.to(data.room).emit("receive_board", boardData);
+    socket.to(boardData).emit("receive_board", boardData);
     console.log("Polo!", boardData);
   });
 
