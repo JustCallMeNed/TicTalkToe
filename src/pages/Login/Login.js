@@ -45,7 +45,7 @@ const Login = ({ setLogUser }) => {
       {/* Username field VVV */}
       <form>
         <Grid container spacing={2} columns={1} direction="column">
-          <Grid item spacing={1} className="username">
+          <Grid item className="username">
             <TextField
               type="text"
               onChange={(e) => {
@@ -57,13 +57,13 @@ const Login = ({ setLogUser }) => {
               autoComplete="off"
               name="name"
               required
-              minlength="4"
-              maxlength="20"
+              minLength="4"
+              maxLength="20"
               size="20"
             ></TextField>
           </Grid>
           {/* Password field VVV */}
-          <Grid item spacing={1} className="password">
+          <Grid item className="password">
             <TextField
               type="password"
               onChange={(e) => {
@@ -75,8 +75,8 @@ const Login = ({ setLogUser }) => {
               autoComplete="off"
               name="pass"
               required
-              minlength="8"
-              maxlength="20"
+              minLength="8"
+              maxLength="20"
               size="20"
             ></TextField>
           </Grid>
@@ -125,10 +125,10 @@ const Login = ({ setLogUser }) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Enter New Username and Password
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }} container={"span"}>
               <form>
                 <Grid container spacing={2} columns={1} direction="column">
-                  <Grid item spacing={1} className="username">
+                  <Grid item className="username">
                     <TextField
                       type="text"
                       onChange={(e) => {
@@ -140,12 +140,12 @@ const Login = ({ setLogUser }) => {
                       autoComplete="off"
                       name="name"
                       required
-                      minlength="4"
-                      maxlength="20"
+                      minLength="4"
+                      maxLength="20"
                       size="20"
                     ></TextField>
                   </Grid>
-                  <Grid item spacing={1} className="password">
+                  <Grid item className="password">
                     <TextField
                       type="password"
                       onChange={(e) => {
@@ -157,8 +157,8 @@ const Login = ({ setLogUser }) => {
                       autoComplete="off"
                       name="pass"
                       required
-                      minlength="8"
-                      maxlength="20"
+                      minLength="8"
+                      maxLength="20"
                       size="20"
                     ></TextField>
                   </Grid>
