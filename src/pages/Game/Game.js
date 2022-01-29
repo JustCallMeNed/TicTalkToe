@@ -2,17 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import "../Game/Game.css";
 import CordsRow from "./components/CordsRow";
-import logUser from "../../App";
 import { io } from "socket.io-client";
-import { room } from "../Chat/Chat";
+// import logUser from "../../App";
 // let {room} = gameRoom;
 // const players = [];
 // const playerName = { logUser };
 
-const socket = io.connect("http://localhost:3001");
-// socket.emit("join_room", room);
+export const socket = io.connect("http://localhost:3001");
 
-const Game = (logUser) => {
+const Game = () => {
   const boxRef = useRef(null);
   const [turn, setTurn] = useState("X");
   // const [turn, setTurn] = useState({ logUser });

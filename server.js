@@ -33,9 +33,10 @@ io.on("connection", (socket) => {
   });
 
   // ticboard send function
-  // socket.on("send_move", (data) => {
-  //   socket.to(data.room).emit("receive_move", data);
-  // });
+  socket.on("send_board", (boardData) => {
+    socket.to(data.room).emit("receive_board", boardData);
+    console.log("Polo!", boardData);
+  });
 
   socket.on("disconnect", () => {
     console.log("User Disconnected", socket.id);

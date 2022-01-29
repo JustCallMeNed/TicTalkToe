@@ -1,25 +1,7 @@
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
-// const sendMove = async () => {
-//   if (currentMove !== "") {
-//     const moveData = {
-//       room: room,
-//       author: username,
-//       message: copy,
-//     };
-//   }
-// };
-
-// const sendMove = async () => {
-//  const moveData = {
-//       room: room,
-//       author: username,
-//       message: ticBoard[rowIndex][boxIndex],
-//     };
-
-//     await socket.emit("send_move", moveData);
-//   };
-
+import { socket } from "../Game";
+// import room from "../../Chat/Chat";
 const CordBox = ({
   turn,
   setTurn,
@@ -30,6 +12,24 @@ const CordBox = ({
   boxIndex,
   logUser,
 }) => {
+  const sendMove = async () => {
+    const boardData = {
+      room: "TestRoom",
+      author: "TestUser",
+      //swap out Test strings for room/logUser
+      board: { ticBoard },
+    };
+    await socket.emit("send_board", boardData);
+    console.log("Marco!", boardData);
+  };
+
+  useEffect(() => {
+    socket.on("receive_board", (boardData) => {
+      console.log("Ping!", boardData);
+      setTicBoard((boardData) => [...ticBoard, boardData]);
+    });
+  }, [socket]);
+
   return (
     <div
       className="cords"
@@ -38,9 +38,9 @@ const CordBox = ({
         if (ticBoard[rowIndex][boxIndex] === "") {
           let copy = [...ticBoard];
           copy[rowIndex][boxIndex] = turn;
-          // sendMove(copy);
+          sendMove(turn);
           //send ticBoard here -- "the thing I need to send is what I am setting ticboard to." > copy
-          console.log(copy);
+          // console.log(copy);
           setTicBoard(copy);
           setTurn(turn === "X" ? "O" : "X");
           gsap.timeline(
@@ -51,7 +51,7 @@ const CordBox = ({
               { scale: 1, ease: "back" }
             )
           );
-          console.log(logUser);
+          // console.log(logUser);
         }
       }}
       currentState={ticBoard[rowIndex][boxIndex]}
