@@ -33,8 +33,8 @@ io.on("connection", (socket) => {
   });
 
   // ticboard send function
-  // socket.on("send_message", (data) => {
-  //   socket.to(data.room).emit("receive_message", data);
+  // socket.on("send_move", (data) => {
+  //   socket.to(data.room).emit("receive_move", data);
   // });
 
   socket.on("disconnect", () => {
