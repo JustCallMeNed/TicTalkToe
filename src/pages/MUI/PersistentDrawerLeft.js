@@ -173,7 +173,7 @@ export default function PersistentDrawerLeft({ logUser, pageContent }) {
       <Main open={open}>
         <DrawerHeader />
         {/* Content here */}
-        <Typography component={"span"}>{pageContent}</Typography>
+        <Typography component={"div"}>{pageContent}</Typography>
         <ChatWindow logUser={logUser} chatVisible={chatVisible} />
       </Main>
     </Box>
