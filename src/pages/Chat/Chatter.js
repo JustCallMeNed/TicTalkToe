@@ -1,4 +1,12 @@
-import { Typography, Box, Container, Grid, Chip, TextField, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Container,
+  Grid,
+  Chip,
+  TextField,
+  Button,
+} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import React, { useRef, useState, useEffect } from "react";
 import "./Chatter.css";
@@ -17,7 +25,10 @@ function Chatter({ socket, username, room }) {
         room: room,
         author: username,
         message: currentMessage,
-        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
       };
 
       await socket.emit("send_message", messageData);
@@ -96,7 +107,11 @@ function Chatter({ socket, username, room }) {
           />
         </Grid>
         <Grid item>
-          <Button size="large" variant="contained" onClick={() => SubmitMessage()}>
+          <Button
+            size="large"
+            variant="contained"
+            onClick={() => SubmitMessage()}
+          >
             <SendIcon />
           </Button>
         </Grid>

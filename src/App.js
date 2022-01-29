@@ -14,7 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="profile" element={<Profile logUser={logUser} />} />
-      <Route path="game" element={<Game logUser={logUser} />} />
+      <Route path="game" element={<Game playerName={logUser} />} />
       <Route path="login" element={<Login setLogUser={setLogUser} />} />
       <Route path="chat" element={<Chat logUser={logUser} />} />
     </Routes>
