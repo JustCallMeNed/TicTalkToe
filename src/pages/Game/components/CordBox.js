@@ -13,23 +13,24 @@ const CordBox = ({
   logUser,
 }) => {
   socket.connect("http://localhost:3001");
+  // console.log(`${cordIndex} connected`);
   const sendMove = async () => {
     const boardData = {
       room: "TestRoom",
-      author: "TestUser",
+      author: "User",
       //swap out Test strings for room/logUser
       board: { ticBoard },
     };
-    await socket.emit("send_board", boardData);
-    console.log("Marco!", boardData);
+    await socket.emit("send_board", { logUser, boardData });
+    console.log("Marco!", logUser, boardData);
   };
 
   useEffect(() => {
     socket.on("receive_board", (boardData) => {
       console.log("Ping!", boardData.board);
-      setTicBoard((boardData) => [...boardData]);
+      setTicBoard((boardData) => [boardData]);
     });
-  }, [socket, ticBoard]);
+  }, [socket]);
 
   return (
     <div
