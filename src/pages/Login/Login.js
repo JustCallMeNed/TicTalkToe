@@ -93,12 +93,15 @@ const Login = ({ setLogUser }) => {
                   "http://localhost:3001/user/findAll",
                   {
                     userName,
-                    password,
                   }
                 );
+                console.log(userName);
+
                 // Need to write conditional statement "If userName and password in field match Then setLogUser"
                 setLogUser(loggedInUser.data.username);
                 routeChange();
+                console.log(loggedInUser);
+                console.log(setLogUser);
               }}
             >
               Submit
@@ -125,7 +128,11 @@ const Login = ({ setLogUser }) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Enter New Username and Password
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }} component={"div"}>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+              component={"div"}
+            >
               <form>
                 <Grid container spacing={2} columns={1} direction="column">
                   <Grid item className="username">
