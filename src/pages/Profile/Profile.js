@@ -1,5 +1,12 @@
-import { Button, Card, CardContent, Container, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 
 const Profile = ({ logUser }) => {
   return (
@@ -26,9 +33,10 @@ const Profile = ({ logUser }) => {
             variant="contained"
             id="seppuku"
             onClick={() => {
-              alert("Can't let you do that " + logUser);
+              axios.delete("http://localhost:3001/user/delete");
             }}
           >
+            {" "}
             Delete Profile
           </Button>
         </Container>

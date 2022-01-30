@@ -18,10 +18,32 @@ exports.create = (req, res) => {
     });
   console.log(req.body);
 };
+
+exports.getUser = async () => {
+  const user = await User.findOne({ where: { username: "Batman" } });
+  if (user === null) {
+    console.log("Not found");
+  } else {
+    console.log(user instanceof User);
+    console.log(user.username);
+  }
+};
+exports.findOne = async (req, res) => {
+  const userName = await User.findOne({});
+
+  if (!userName) {
+    return res.status(400).send({
+      message: `No user found with the id`,
+    });
+  }
+
+  return res.send(userName);
+};
+
 exports.findOne = (req, res) => {
-  const userName = req.query.userName;
+  const userName = req.query.id;
   var condition = userName
-    ? { userName: { [Op.like]: `%${userName}%` } }
+    ? { user: { [Op.like]: `%${req.query.id}%` } }
     : null;
 
   User.findOne({ where: condition })
@@ -56,30 +78,6 @@ exports.update = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message: "Error updating User with id=" + id,
-      });
-    });
-};
-
-exports.delete = (req, res) => {
-  const id = req.params.id;
-
-  User.destroy({
-    where: { id: id },
-  })
-    .then((num) => {
-      if (num === 1) {
-        res.send({
-          message: "User was deleted successfully!",
-        });
-      } else {
-        res.send({
-          message: `Cannot delete User with id=${id}`,
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Could not delete User with id=" + id,
       });
     });
 };
