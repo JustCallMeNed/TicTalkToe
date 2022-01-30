@@ -5,70 +5,84 @@ import {
   Container,
   Typography,
   TextField,
+  Grid,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 
 const Profile = ({ logUser }) => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box>
       {logUser === null ? (
-        <Card
-          variant="outlined"
-          sx={{ display: "flex", alignItems: "center", width: "500px" }}
-        >
-          <CardContent sx={{ display: "flex", textAlign: "center" }}>
-            <Typography variant="h3">
-              Please Login to enjoy Tic Talk Toe to the fullest
-            </Typography>
-          </CardContent>
-        </Card>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Card
+            variant="outlined"
+            sx={{ display: "flex", alignItems: "center", width: "500px" }}
+          >
+            <CardContent sx={{ display: "flex", textAlign: "center" }}>
+              <Typography variant="h3">
+                Please Login to enjoy Tic Talk Toe to the fullest
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
       ) : (
-        <Container>
+        <Box>
           <Typography>
             Hello <b>{logUser}</b>
           </Typography>
           <br />
-          <Typography>Change Password:</Typography>
-          <TextField
-            type="password"
-            onChange={(e) => {
-              // setPassword(e.target.value);
-            }}
-            id="pass"
-            label="Current Password"
-            variant="outlined"
-            autoComplete="off"
-            name="pass"
-            required
-            minLength="8"
-            maxLength="20"
-            size="20"
-          ></TextField>
-          <TextField
-            type="password"
-            onChange={(e) => {
-              // setPassword(e.target.value);
-            }}
-            id="pass"
-            label="Enter New Password"
-            variant="outlined"
-            autoComplete="off"
-            name="pass"
-            required
-            minLength="8"
-            maxLength="20"
-            size="20"
-          ></TextField>
-          <Button
-            variant="contained"
-            id="changepass"
-            onClick={() => {
-              alert("Can't let you do that " + logUser);
-            }}
-          >
-            Change Password
-          </Button>
+          <Grid container spacing={2} columns={1} direction="column">
+            <Grid item>
+              <Typography>Change Password:</Typography>
+            </Grid>
+            <Grid item>
+              <TextField
+                type="password"
+                onChange={(e) => {
+                  // setPassword(e.target.value);
+                }}
+                id="pass"
+                label="Current Password"
+                variant="outlined"
+                autoComplete="off"
+                name="pass"
+                required
+                minLength="8"
+                maxLength="20"
+                size="20"
+              ></TextField>
+            </Grid>
+            <Grid item>
+              <TextField
+                type="password"
+                onChange={(e) => {
+                  // setPassword(e.target.value);
+                }}
+                id="pass"
+                label="Enter New Password"
+                variant="outlined"
+                autoComplete="off"
+                name="pass"
+                required
+                minLength="8"
+                maxLength="20"
+                size="20"
+              ></TextField>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                id="changepass"
+                onClick={() => {
+                  alert("Naw, you're good " + logUser);
+                }}
+              >
+                Change Password
+              </Button>
+            </Grid>
+          </Grid>
+          <br />
           <Typography>Have you considered ending it all?</Typography>
           <Button
             variant="contained"
@@ -80,7 +94,7 @@ const Profile = ({ logUser }) => {
             {" "}
             Delete Profile
           </Button>
-        </Container>
+        </Box>
       )}
     </Box>
   );
