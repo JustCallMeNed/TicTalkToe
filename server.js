@@ -41,9 +41,9 @@ io.on("connection", (socket) => {
   });
 
   // ticboard send function
-  socket.on("send_board", (boardData) => {
-    socket.to(boardData.room).emit("receive_board", boardData);
-    console.log("Polo!", boardData);
+  socket.on("send_board", ({ boardData }) => {
+    socket.to(boardData.room).emit("send_board", boardData.board);
+    console.log("Polo!", boardData.room, boardData.board);
   });
 
   socket.on("disconnect", () => {

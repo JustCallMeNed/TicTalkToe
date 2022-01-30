@@ -11,6 +11,8 @@ const CordBox = ({
   rowIndex,
   boxIndex,
   logUser,
+  winState,
+  tieState,
 }) => {
   socket.connect("http://localhost:3001");
   // console.log(`${cordIndex} connected`);
@@ -26,11 +28,13 @@ const CordBox = ({
   };
 
   useEffect(() => {
-    socket.on("receive_board", (boardData) => {
+    socket.on("send_board", ({ boardData }) => {
       console.log("Ping!", boardData.board);
-      setTicBoard((boardData) => [boardData]);
+      setTicBoard((boardData) => [boardData.board]);
     });
   }, [socket]);
+
+  // const [clickable, setClickable] = useState(true);
 
   return (
     <div
