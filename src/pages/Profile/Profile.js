@@ -42,7 +42,7 @@ const Profile = ({ logUser }) => {
                 onChange={(e) => {
                   // setPassword(e.target.value);
                 }}
-                id="pass"
+                id="currentPass"
                 label="Current Password"
                 variant="outlined"
                 autoComplete="off"
@@ -55,7 +55,7 @@ const Profile = ({ logUser }) => {
             </Grid>
             <Grid item>
               <TextField
-                type="password"
+                type="newPassword"
                 onChange={(e) => {
                   // setPassword(e.target.value);
                 }}
