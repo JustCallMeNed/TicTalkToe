@@ -9,6 +9,7 @@ const CordsRow = ({
   row,
   rowIndex,
   cordGrid,
+  logUser,
 }) => {
   const rowRef = useRef(null);
   useEffect(() => {
@@ -31,6 +32,7 @@ const CordsRow = ({
           setTurn={setTurn}
           ticBoard={ticBoard}
           setTicBoard={setTicBoard}
+          logUser={logUser}
         />
       ))}
     </div>

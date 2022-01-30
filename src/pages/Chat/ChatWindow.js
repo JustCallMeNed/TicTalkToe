@@ -8,9 +8,8 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Chat from "./Chat";
 
-export default function ChatWindow({ chatVisible }) {
+export default function ChatWindow({ logUser, chatVisible }) {
   return (
-    // Need to fix the style here so div isn't clickable
     <Box id="chatWindow" style={{ bottom: chatVisible ? "5px" : "-1000px" }}>
       <Accordion>
         <AccordionSummary
@@ -21,7 +20,11 @@ export default function ChatWindow({ chatVisible }) {
           <Typography variant="h5">Let's Chat</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Chat />
+          {logUser === null ? (
+            <Typography variant="h6">Please Log in to chat</Typography>
+          ) : (
+            <Chat logUser={logUser} />
+          )}
         </AccordionDetails>
       </Accordion>
     </Box>

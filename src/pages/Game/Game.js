@@ -2,9 +2,20 @@ import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import "../Game/Game.css";
 import CordsRow from "./components/CordsRow";
+import { io } from "socket.io-client";
+
+// import logUser from "../../App";
+
+// let {room} = gameRoom;
+// const players = [];
+// const playerName = { logUser };
+
+export const socket = io.connect("http://localhost:3001");
+
 const Game = () => {
   const boxRef = useRef(null);
   const [turn, setTurn] = useState("X");
+  // const [turn, setTurn] = useState({ logUser });
   const [winState, setWinState] = useState(false);
   const [tieState, setTieState] = useState(false);
   const [ticBoard, setTicBoard] = useState([
@@ -40,9 +51,30 @@ const Game = () => {
     );
   };
 
+  //loadup animation
   useEffect(() => {
-    gsap.to(boxRef.current, { rotation: "+=360", opacity: 50 });
+    gsap.timeline(
+      gsap.to(boxRef.current, { rotation: "+=360", opacity: 50 }),
+      gsap.from(".playerturn", { y: 100, opacity: 0 }),
+      gsap.from("button", { scale: 0, opacity: 0, stagger: 0.3 })
+    );
   }, []);
+
+  //Turn/Win/Draw Banner change
+  useEffect(() => {
+    gsap.timeline(
+      gsap.fromTo(
+        ".playerturn",
+        { y: 0, opacity: 1 },
+        { y: 100, opacity: 0, ease: "back" }
+      ),
+      gsap.fromTo(
+        ".playerturn",
+        { y: 100, opacity: 0 },
+        { y: 0, opacity: 1, ease: "back" }
+      )
+    );
+  }, [winState, tieState]);
 
   useEffect(() => {
     if (winState === false) {
@@ -133,6 +165,7 @@ const Game = () => {
         </div>
       ) : turn === "X" ? (
         <div className="playerturn">
+          {/* <h1>{`${playerName}`}'s Turn</h1> */}
           <h1>Player One's Turn</h1>
         </div>
       ) : turn === "O" ? (

@@ -1,15 +1,13 @@
 const express = require("express");
-const { Sequelize } = require("sequelize");
 const app = express();
 const db = require("./back-end/models");
 const http = require("http");
-const server = http.createServer(app);
+var server = http.createServer(app);
 const cors = require("cors");
 const { Server } = require("socket.io");
 
 const path = require("path");
 const port = process.env.PORT || 3001;
-const sequelize = new Sequelize("postgres://user:postgres:5432/dbname");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,6 +24,14 @@ io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
+    // Game Room needs a way to track who's playing the game
+    // const room ={
+    //   roomName: data.room,
+    //   players: {
+    //     playerOne: "",
+    //     playerTwo: ""
+    //   }
+    // }
     socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
@@ -34,20 +40,33 @@ io.on("connection", (socket) => {
     socket.to(data.room).emit("receive_message", data);
   });
 
+  // ticboard send function
+  socket.on("send_board", ({ boardData }) => {
+    socket.to(boardData.room).emit("send_board", boardData.board);
+    console.log("Polo!", boardData.room, boardData.board);
+  });
+
   socket.on("disconnect", () => {
     console.log("User Disconnected", socket.id);
   });
 });
 
-server.listen(3001, () => {
-  console.log("Now THIS is pod racing");
-});
-
-// routes
 require("./back-end/routes/api-routes.js")(app);
 
+// server.listen(3002, (err) => {
+//   if (err) {
+//     return console.log("Error", err);
+//   }
+//   console.log("Now THIS is pod racing");
+// });
+
+// routes
+
 db.sequelize.sync().then(() => {
-  app.listen(port, () => {
+  server.listen(port, (err) => {
+    if (err) {
+      return console.log("Error", err);
+    }
     console.log(`App is listening on port: ${port}`);
   });
 });

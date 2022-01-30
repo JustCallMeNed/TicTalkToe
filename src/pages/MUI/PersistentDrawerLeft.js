@@ -18,11 +18,10 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import LoginIcon from "@mui/icons-material/Login";
 import CasinoIcon from "@mui/icons-material/Casino";
 import HomeIcon from "@mui/icons-material/Home";
+import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
 import "./PersistentDrawerLeft.css";
 import ChatWindow from "../Chat/ChatWindow";
@@ -76,7 +75,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft({ pageContent }) {
+export default function PersistentDrawerLeft({ logUser, pageContent }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -127,7 +126,7 @@ export default function PersistentDrawerLeft({ pageContent }) {
         </DrawerHeader>
         <Divider />
         <List>
-          <Link class="link" to="/">
+          <Link className="link" to="/">
             <ListItem button>
               <ListItemIcon>
                 <HomeIcon />
@@ -135,7 +134,15 @@ export default function PersistentDrawerLeft({ pageContent }) {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <Link class="link" to="game">
+          <Link className="link" to="profile">
+            <ListItem button>
+              <ListItemIcon>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary="Profile" id="profile" />
+            </ListItem>
+          </Link>
+          <Link className="link" to="game">
             <ListItem button>
               <ListItemIcon>
                 <CasinoIcon />
@@ -143,7 +150,7 @@ export default function PersistentDrawerLeft({ pageContent }) {
               <ListItemText primary="Game" id="game" />
             </ListItem>
           </Link>
-          <Link class="link" to="login">
+          <Link className="link" to="login">
             <ListItem button>
               <ListItemIcon>
                 {/* Look up more ListItemIcons */}
@@ -154,7 +161,6 @@ export default function PersistentDrawerLeft({ pageContent }) {
           </Link>
         </List>
         <Divider />
-        {/* This is an example of mapping drawer buttons, will be deleted later */}
         <List>
           <ListItem button onClick={() => setChatVisible(!chatVisible)}>
             <ListItemIcon>
@@ -162,22 +168,13 @@ export default function PersistentDrawerLeft({ pageContent }) {
             </ListItemIcon>
             <ListItemText primary="Chat" />
           </ListItem>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
         </List>
-        {/* Above will be replaced */}
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
         {/* Content here */}
-        <Typography>{pageContent}</Typography>
-        <ChatWindow chatVisible={chatVisible} />
+        <Typography component={"div"}>{pageContent}</Typography>
+        <ChatWindow logUser={logUser} chatVisible={chatVisible} />
       </Main>
     </Box>
   );
