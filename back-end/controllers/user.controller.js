@@ -20,7 +20,7 @@ exports.create = (req, res) => {
 };
 
 exports.getUser = async () => {
-  const user = await User.findOne({ where: { username: "Batman" } });
+  const user = await User.findOne({ where: { username: "2" } });
   if (user === null) {
     console.log("Not found");
   } else {
@@ -40,8 +40,8 @@ exports.findOne = async (req, res) => {
   return res.send(userName);
 };
 
-exports.findOne = (req, res) => {
-  const userName = req.query.id;
+exports.findAll = (req, res) => {
+  const userName = req.query.username;
   var condition = userName
     ? { user: { [Op.like]: `%${req.query.id}%` } }
     : null;

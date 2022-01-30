@@ -90,8 +90,12 @@ const Login = ({ setLogUser }) => {
               id="loginSubmit"
               onClick={async () => {
                 const loggedInUser = await axios.get(
-                  "http://localhost:3001/user/getUser"
+                  "http://localhost:3001/user/findAll",
+                  {
+                    userName,
+                  }
                 );
+                console.log(userName);
 
                 // Need to write conditional statement "If userName and password in field match Then setLogUser"
                 setLogUser(loggedInUser.data.username);
