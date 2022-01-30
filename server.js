@@ -24,6 +24,14 @@ io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
+    // Game Room needs a way to track who's playing the game
+    // const room ={
+    //   roomName: data.room,
+    //   players: {
+    //     playerOne: "",
+    //     playerTwo: ""
+    //   }
+    // }
     socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
@@ -33,9 +41,9 @@ io.on("connection", (socket) => {
   });
 
   // ticboard send function
-  socket.on("send_board", (boardData) => {
-    socket.to(boardData).emit("receive_board", boardData.board);
-    console.log("Polo!", boardData.board);
+  socket.on("send_board", ({ boardData }) => {
+    socket.to(boardData.room).emit("send_board", boardData.board);
+    console.log("Polo!", boardData.room, boardData.board);
   });
 
   socket.on("disconnect", () => {

@@ -4,6 +4,7 @@ import {
   CardContent,
   Container,
   Typography,
+  TextField,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
@@ -28,6 +29,46 @@ const Profile = ({ logUser }) => {
             Hello <b>{logUser}</b>
           </Typography>
           <br />
+          <Typography>Change Password:</Typography>
+          <TextField
+            type="password"
+            onChange={(e) => {
+              // setPassword(e.target.value);
+            }}
+            id="pass"
+            label="Current Password"
+            variant="outlined"
+            autoComplete="off"
+            name="pass"
+            required
+            minLength="8"
+            maxLength="20"
+            size="20"
+          ></TextField>
+          <TextField
+            type="password"
+            onChange={(e) => {
+              // setPassword(e.target.value);
+            }}
+            id="pass"
+            label="Enter New Password"
+            variant="outlined"
+            autoComplete="off"
+            name="pass"
+            required
+            minLength="8"
+            maxLength="20"
+            size="20"
+          ></TextField>
+          <Button
+            variant="contained"
+            id="changepass"
+            onClick={() => {
+              alert("Can't let you do that " + logUser);
+            }}
+          >
+            Change Password
+          </Button>
           <Typography>Have you considered ending it all?</Typography>
           <Button
             variant="contained"
